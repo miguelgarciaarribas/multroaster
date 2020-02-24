@@ -1,0 +1,26 @@
+body {
+  margin: 40px;
+}
+
+.header {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-row-gap: 10px;
+  grid-column-gap: 100px;
+  background-color: #fff;
+  color: #444;
+}
+
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
