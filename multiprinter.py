@@ -1,10 +1,8 @@
 import datetime
 
-class MultiPrinter:
-    def __init__(self, multiplications):
-        self.multiplications = multiplications
 
-    def generate(self):
+class MultiPrinter:
+    def print(self, operations):
         today = datetime.datetime.now()
         date = today.strftime("%A %B %d %Y")
 
@@ -16,13 +14,29 @@ class MultiPrinter:
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="mult.css">
+<script>
+function toggleResults() {
+  var results = document.getElementsByClassName('result');
+  for(i = 0; i < results.length; i++) {
+    if (results[i].style.display === 'inline'){
+     results[i].style.display = 'none';
+    }  else {
+     results[i].style.display = 'inline';
+    }
+  }
+}
+
+
+</script>
 </head>
 <body>
 """
-        result += '<p class="header"> Multiplications for %s </p>'% date
+        result += '<p class="header"> Operations for Bruno - %s </p>'% date
+        result += '<div class="control"> <input type="button" value="Toggle Results" onClick=toggleResults() /> </div>'
         result += '<div class="wrapper">'
-        for mult in self.multiplications:
-            result = result + "<div class=box> %s </div>\n" % str(mult)
+
+        for op in operations:
+            result = result + "<div class=box> <span> %s </span> <span class=result> %s </span> </div>\n" % (op.operation(), str(op.calculate()))
         result += '</div></body>'
         return result
         

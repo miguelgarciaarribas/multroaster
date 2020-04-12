@@ -1,5 +1,5 @@
 body {
-  margin: 40px;
+  margin: 30px;
 }
 
 .header {
@@ -7,20 +7,26 @@ body {
     font-weight: bold;
 }
 
+.control {
+  padding: 15px;
+}
+
 .wrapper {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 40% 60%;
   grid-row-gap: 10px;
-  grid-column-gap: 100px;
-  background-color: #fff;
-  color: #444;
+  grid-column-gap: 90px;
+
 }
 
 .box {
-  background-color: #444;
-  color: #fff;
   border-radius: 5px;
-  padding: 20px;
+  padding: 15px;
   font-size: 150%;
+  background-color: #fea
 }
 
+.result {
+    color: #aaa;
+    display: none
+}
