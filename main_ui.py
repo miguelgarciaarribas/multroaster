@@ -46,6 +46,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         config.includeAdditions = self.additionConfig.isChecked()
         config.includeSubstractions = self.substractionConfig.isChecked()
         config.includeMultiplications = self.multiplicationConfig.isChecked()
+        config.includeTimeTables = self.timeTableConfig.isChecked()
         
         return config
 

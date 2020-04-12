@@ -5,22 +5,25 @@ class MultiConfig:
     Contains the configuraation to decide how the multiplication should be generated.
     """
     def __init__(self):
-        # tables allowed
+        # Tables allowed
         self.timetables = []
 
-        # max multiplicator
+        # Max multiplicator
         self.maxmult = 12
         
-        # number of multiplications to generate
+        # Number of multiplications to generate
         self.maxCount = 0
 
-        # whether to calculate the result
+        # Whether to calculate the result
         self.resolve = True
 
+        # Main variants
         self.includeMultiplications = True
         self.includeAdditions = True
         self.includeSubstractions = True
 
+        # Sub variants
+        self.includeTimeTables =  True
 
 class Operation:
     """ Generic operation with two operands"""

@@ -68,9 +68,9 @@
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QRadioButton" name="radioButton">
+       <widget class="QRadioButton" name="timeTableConfig">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -91,6 +91,9 @@
         </property>
        </widget>
        <widget class="QRadioButton" name="radioButton_2">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>30</x>

@@ -12,15 +12,22 @@ def getMaxCount(config):
 
 
 def generateMultiplications(config):
+    """ Generates a third raw time tables as well as general multiplications if configured"""
     maxCount = getMaxCount(config)
     multiplications = set()
     if not config.includeMultiplications:
         return multiplications
+    if config.includeTimeTables:
+        maxCount = int(maxCount * 2 / 3)
     for mult in range(0, maxCount):
         table = config.timetables[random.randint(0, len(config.timetables)-1)]
-        multiplicant = random.randint(0, 99)
+        multiplicant = random.randint(10, 99)
         multiplications.add(Multiplication(table, multiplicant, config.resolve))
-
+    if config.includeTimeTables:
+        for mult in range(0, int(maxCount /2)):
+            table = config.timetables[random.randint(0, len(config.timetables)-1)]
+            multiplicant = random.randint(0,12)
+            multiplications.add(Multiplication(table, multiplicant, config.resolve))
     return multiplications
 
 def generateSubstractions(config):
@@ -28,7 +35,7 @@ def generateSubstractions(config):
     substractions = set()
     if not config.includeSubstractions:
         return substractions
-    
+
     for subs in range(0, maxCount):
         first = random.randint(0, 999)
         second = random.randint(0, 999)
