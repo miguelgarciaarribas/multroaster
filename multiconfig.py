@@ -21,6 +21,7 @@ class MultiConfig:
         self.includeMultiplications = True
         self.includeAdditions = True
         self.includeSubstractions = True
+        self.includeTimes = True
 
         # Sub variants
         self.includeTimeTables =  True
@@ -39,6 +40,9 @@ class Operation:
 
     def calculate(self):
         raise Exception('Operation not Supported')
+
+    def display(self):
+        return "<div class=box> <span> %s </span> <span class=result> %s </span> </div>\n" % (self.operation(), str(self.calculate()))
 
 
 class Multiplication(Operation):
@@ -73,3 +77,17 @@ class Addition(Operation):
             Operation.__init__(self, second, first, '+', result)
     def calculate(self):
         return self.first + self.second
+
+
+class Times(Operation):
+    def __init__(self, first, second, result):
+        Operation.__init__(self, first, second, ':', result)
+    def calculate(self):
+        return 0
+    def operation(self):
+       identifier='"canvas'+str(self.first)+str(self.second)+'"'
+       return '<canvas id=' + identifier + ' width="300" height="300"</canvas>\n' +  \
+           '<script>drawClock(' + identifier + ', 200, 300, 300, ' + str(self.first) + ', ' \
+               + str(self.second) + ')</script>'
+       # TODO: allow digital times
+       #return str(self.first) + ' : ' + str(self.second) + '='

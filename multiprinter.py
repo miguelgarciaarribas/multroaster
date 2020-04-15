@@ -6,14 +6,13 @@ class MultiPrinter:
         today = datetime.datetime.now()
         date = today.strftime("%A %B %d %Y")
 
-
-
         
         result = """
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="mult.css">
+<script src="multiclock.js"></script>
 <script>
 function toggleResults() {
   var results = document.getElementsByClassName('result');
@@ -36,7 +35,8 @@ function toggleResults() {
         result += '<div class="wrapper">'
 
         for op in operations:
-            result = result + "<div class=box> <span> %s </span> <span class=result> %s </span> </div>\n" % (op.operation(), str(op.calculate()))
+            result = result + op.display()
+
         result += '</div></body>'
         return result
         

@@ -1,15 +1,21 @@
 import random
 
-from multiconfig import Addition, MultiConfig, Multiplication, Substraction
+from multiconfig import Addition, MultiConfig, Multiplication, Substraction, Times
 
 def getMaxCount(config):
-    if config.includeMultiplications and config.includeAdditions and config.includeSubstractions:
-        return int(config.maxCount / 3)
-    if config.includeMultiplications and config.includeAdditions:
-        return int(config.maxCount / 2)
-    else:
-        return int(config.maxCount)
+    operations = 0
+    if config.includeMultiplications:
+        operations +=1
+    if config.includeAdditions:
+        operations +=1
+    if config.includeSubstractions:
+        operations +=1
+    if config.includeTimes:
+        operations +=1
 
+    if operations > 0:
+        return int(config.maxCount / operations)
+    raise "Operations cannot be 0"
 
 def generateMultiplications(config):
     """ Generates a third raw time tables as well as general multiplications if configured"""
@@ -36,7 +42,7 @@ def generateSubstractions(config):
     if not config.includeSubstractions:
         return substractions
 
-    for subs in range(0, maxCount):
+    for i in range(0, maxCount):
         first = random.randint(0, 999)
         second = random.randint(0, 999)
         substractions.add(Substraction(first,second, config.resolve))
@@ -47,10 +53,19 @@ def generateAdditions(config):
     additions = set()
     if not config.includeAdditions:
         return additions
-    for subs in range(0, maxCount):
+    for i in range(0, maxCount):
         first = random.randint(0, 999)
         second = random.randint(0, 999)
         additions.add(Addition(first,second, config.resolve))
     return additions
-            
+
+def generateTimes(config):
+    maxCount = getMaxCount(config)
+    times = set()
+    minutes = range(0, 60, 5)
+    for i in range(0, maxCount):
+        first = random.randint(1, 12) # TODO add 24h support
+        second = random.choice(minutes)
+        times.add(Times(first,second, config.resolve))
+    return times
 

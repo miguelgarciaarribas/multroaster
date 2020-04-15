@@ -13,13 +13,17 @@ def generate():
     multiplications =  generateMultiplications(config)
     substractions = generateSubstractions(config)
     additions = generateAdditions(config)
+    times = generateTimes(config)
     result = list(multiplications) + list( substractions) + list(additions)
     random.shuffle(result)
+
+    # Temporarly add all the clocks at the bottom to not break layout
+    result += times
 
     printer = MultiPrinter()
     result = printer.print(result)
     print(result)
-    with open("res.html", "w") as f:
+    with open("restest.html", "w") as f:
         f.write(result)
 
 
