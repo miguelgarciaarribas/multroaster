@@ -1,31 +1,18 @@
 import random
 
 from generator import *
-from multiconfig import Addition, MultiConfig, Multiplication, Substraction
-from multiprinter import MultiPrinter
 
 
-def generate():
+def createOperations():
     config = MultiConfig()
     config.timetables = [1, 2, 3, 4, 5, 8]
     config.maxCount = 24
-
-    multiplications =  generateMultiplications(config)
-    substractions = generateSubstractions(config)
-    additions = generateAdditions(config)
-    times = generateTimes(config)
-    result = list(multiplications) + list( substractions) + list(additions) + list(times)
-    random.shuffle(result)
-
-    printer = MultiPrinter()
-    result = printer.print(result)
-    print(result)
-    with open("restest.html", "w") as f:
-        f.write(result)
+    config.fileName = "restest.html"
+    generate(config)
 
 
 def main():
-    generate()
+    createOperations()
 
 if __name__== "__main__":
   main()

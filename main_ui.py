@@ -1,16 +1,28 @@
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QSlider
 
 from ui.mult_ui import *
 from generator import *
-from multiconfig import Addition, MultiConfig, Multiplication, Substraction
-from multiprinter import MultiPrinter
+#from multiconfig import Addition, MultiConfig, Multiplication, Substraction
+#from multiprinter import MultiPrinter
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
+
+        # Generate Button
         self.generateButton.clicked.connect(self.generateMult)
+
+        # Operation Slider
+        # TODO check if we can do this in the UI directly
+        self.operationAmountSlider.setTickPosition(QSlider.TicksBelow)
+        self.operationAmountSlider.valueChanged.connect(self.operationSliderValuechange)
+
+    def operationSliderValuechange(self):
+        print(self.operationAmountSlider.value())
+
     def generateMult(self):
         config = self.getConfig()
         generate(config)
@@ -41,27 +53,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         config = MultiConfig()
         config.timetables = timetables
-        config.maxCount = 24
+
+        # TODO add a number to the slide and update it via slider events
+        config.maxCount = self.operationAmountSlider.value()
 
         config.includeAdditions = self.additionConfig.isChecked()
         config.includeSubstractions = self.substractionConfig.isChecked()
         config.includeMultiplications = self.multiplicationConfig.isChecked()
         config.includeTimeTables = self.timeTableConfig.isChecked()
+        config.includeTimes = self.timeConfig.isChecked()
         
         return config
 
-def generate(config):
-    multiplications =  generateMultiplications(config)
-    substractions = generateSubstractions(config)
-    additions = generateAdditions(config)
-    result = list(multiplications) + list( substractions) + list(additions)
-    random.shuffle(result)
-    
-    printer = MultiPrinter()
-    result = printer.print(result) 
-    print(result)
-    with open("res.html", "w") as f:
-        f.write(result)
 
 
 if __name__== "__main__":

@@ -1,6 +1,7 @@
 import random
 
 from multiconfig import Addition, MultiConfig, Multiplication, Substraction, Times
+from multiprinter import MultiPrinter
 
 def getMaxCount(config):
     operations = 0
@@ -56,12 +57,14 @@ def generateAdditions(config):
     for i in range(0, maxCount):
         first = random.randint(0, 999)
         second = random.randint(0, 999)
-        additions.add(Addition(first,second, config.resolve))
+        additions.add(Addition(first,second,  config.resolve))
     return additions
 
 def generateTimes(config):
     maxCount = getMaxCount(config)
     times = set()
+    if not config.includeTimes:
+        return times
     minutes = range(0, 60, 5)
     for i in range(0, maxCount):
         first = random.randint(1, 12) # TODO add 24h support
@@ -69,3 +72,16 @@ def generateTimes(config):
         times.add(Times(first,second, config.resolve))
     return times
 
+def generate(config):
+    multiplications =  generateMultiplications(config)
+    substractions = generateSubstractions(config)
+    additions = generateAdditions(config)
+    times = generateTimes(config)
+    result = list(multiplications) + list( substractions) + list(additions) + list(times)
+    random.shuffle(result)
+
+    printer = MultiPrinter()
+    result = printer.print(result)
+    print(result)
+    with open(config.fileName, "w") as f:
+        f.write(result)
