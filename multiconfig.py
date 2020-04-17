@@ -41,8 +41,9 @@ class Operation:
     def calculate(self):
         raise Exception('Operation not Supported')
 
-    def display(self):
-        return "<div class=box> <span> %s </span> <span class=result> %s </span> </div>\n" % (self.operation(), str(self.calculate()))
+    def display(self, order):
+        return "<div class=box> <span><b>%d)</b>  %s </span> <span class=result> %s </span> </div>\n" % \
+    (order, self.operation(), str(self.calculate()))
 
 
 class Multiplication(Operation):

@@ -27,7 +27,6 @@ def generate():
         f.write(result)
 
 
-
 def main():
     generate()
 

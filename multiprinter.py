@@ -6,6 +6,7 @@ class MultiPrinter:
         today = datetime.datetime.now()
         date = today.strftime("%A %B %d %Y")
 
+#TODO Replace with a proper template
         
         result = """
 <!DOCTYPE html>
@@ -34,8 +35,10 @@ function toggleResults() {
         result += '<div class="control"> <input type="button" value="Toggle Results" onClick=toggleResults() /> </div>'
         result += '<div class="wrapper">'
 
+        order = 1
         for op in operations:
-            result = result + op.display()
+            result = result + op.display(order)
+            order = order +1
 
         result += '</div></body>'
         return result
