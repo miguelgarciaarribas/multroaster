@@ -56,7 +56,7 @@ function drawHandles(canvas_id, hour, minute, diameter, length, width) {
     ctx.beginPath();
     ctx.arc(0,0,((diameter/2)*0.1),0,2*Math.PI);
     ctx.fill();
-    
+
     minuteLength = (diameter/2)*0.8;
     hourLength = (diameter/2)*0.6;
 

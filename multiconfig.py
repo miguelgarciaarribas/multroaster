@@ -81,14 +81,17 @@ class Addition(Operation):
 
 
 class Times(Operation):
+    """ Contains the logic for displaying a time """
     def __init__(self, first, second, result):
         Operation.__init__(self, first, second, ':', result)
     def calculate(self):
-        return 0
+        return str(self.first).zfill(2) + ' : ' + str(self.second).zfill(2)
     def operation(self):
        identifier='"canvas'+str(self.first)+str(self.second)+'"'
        return '<canvas id=' + identifier + ' width="300" height="300"</canvas>\n' +  \
            '<script>drawClock(' + identifier + ', 200, 300, 300, ' + str(self.first) + ', ' \
                + str(self.second) + ')</script>'
        # TODO: allow digital times
-       #return str(self.first) + ' : ' + str(self.second) + '='
+    def display(self, order):
+        return '<div class=clockbox> <span align="center"><b>%d)</b> %s </span> <span class=result> %s </span> </div>\n' % \
+    (order, self.operation(), str(self.calculate()))

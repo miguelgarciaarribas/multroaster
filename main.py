@@ -14,11 +14,8 @@ def generate():
     substractions = generateSubstractions(config)
     additions = generateAdditions(config)
     times = generateTimes(config)
-    result = list(multiplications) + list( substractions) + list(additions)
+    result = list(multiplications) + list( substractions) + list(additions) + list(times)
     random.shuffle(result)
-
-    # Temporarly add all the clocks at the bottom to not break layout
-    result += times
 
     printer = MultiPrinter()
     result = printer.print(result)
