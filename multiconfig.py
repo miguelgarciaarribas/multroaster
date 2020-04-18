@@ -5,6 +5,8 @@ class MultiConfig:
     Contains the configuraation to decide how the multiplication should be generated.
     """
     def __init__(self):
+        self.studentName = "Bruno"
+
         # Tables allowed
         self.timetables = []
 

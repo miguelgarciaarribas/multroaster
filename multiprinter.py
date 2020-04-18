@@ -2,7 +2,7 @@ import datetime
 
 
 class MultiPrinter:
-    def print(self, operations):
+    def print(self, config, operations):
         today = datetime.datetime.now()
         date = today.strftime("%A %B %d %Y")
 
@@ -31,7 +31,7 @@ function toggleResults() {
 </head>
 <body>
 """
-        result += '<p class="header"> Operations for Bruno - %s </p>'% date
+        result += '<p class="header"> Operations for %s - %s </p>'% (config.studentName, date)
         result += '<div class="control"> <input type="button" value="Toggle Results" onClick=toggleResults() /> </div>'
         result += '<div class="wrapper">'
 

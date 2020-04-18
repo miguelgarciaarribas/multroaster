@@ -81,7 +81,7 @@ def generate(config):
     random.shuffle(result)
 
     printer = MultiPrinter()
-    result = printer.print(result)
+    result = printer.print(config, result)
     print(result)
     with open(config.fileName, "w") as f:
         f.write(result)

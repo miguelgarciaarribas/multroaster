@@ -19,9 +19,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # TODO check if we can do this in the UI directly
         self.operationAmountSlider.setTickPosition(QSlider.TicksBelow)
         self.operationAmountSlider.valueChanged.connect(self.operationSliderValuechange)
+        self.operationCount.setText(str(self.operationAmountSlider.value()))
 
     def operationSliderValuechange(self):
-        print(self.operationAmountSlider.value())
+        self.operationCount.setText(str(self.operationAmountSlider.value()))
 
     def generateMult(self):
         config = self.getConfig()
@@ -53,6 +54,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         config = MultiConfig()
         config.timetables = timetables
+
+        config.studentName = self.studentName.text()
 
         # TODO add a number to the slide and update it via slider events
         config.maxCount = self.operationAmountSlider.value()
