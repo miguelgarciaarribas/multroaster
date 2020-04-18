@@ -3,9 +3,6 @@ from PyQt5.QtWidgets import QSlider
 
 from ui.mult_ui import *
 from generator import *
-#from multiconfig import Addition, MultiConfig, Multiplication, Substraction
-#from multiprinter import MultiPrinter
-
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -57,10 +54,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         config.studentName = self.studentName.text()
 
-        # TODO add a number to the slide and update it via slider events
         config.maxCount = self.operationAmountSlider.value()
 
         config.includeAdditions = self.additionConfig.isChecked()
+        config.addFourDigits = self.addFourDigits.isChecked()
         config.includeSubstractions = self.substractionConfig.isChecked()
         config.includeMultiplications = self.multiplicationConfig.isChecked()
         config.includeTimeTables = self.timeTableConfig.isChecked()

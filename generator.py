@@ -54,9 +54,16 @@ def generateAdditions(config):
     additions = set()
     if not config.includeAdditions:
         return additions
+
+    minNumber = 11
+    maxNumber = 999
+    if config.addFourDigits:
+        maxNumber = 9999
+        minNumber = 100
+
     for i in range(0, maxCount):
-        first = random.randint(0, 999)
-        second = random.randint(0, 999)
+        first = random.randint(minNumber, maxNumber)
+        second = random.randint(minNumber, maxNumber)
         additions.add(Addition(first,second,  config.resolve))
     return additions
 
