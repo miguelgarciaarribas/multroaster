@@ -1,6 +1,7 @@
 import random
 
-from multiconfig import Addition, FillLetterPair, FillSpiral, MultiConfig, Multiplication, Substraction, Times
+from multiconfig import MultiConfig
+from operation import Addition, Letters, Spiral, Multiplication, Substraction, Times
 from multiprinter import MultiPrinter
 
 def getMaxCount(config):
@@ -33,12 +34,12 @@ def generateMultiplications(config):
     for mult in range(0, maxCount):
         table = config.timetables[random.randint(0, len(config.timetables)-1)]
         multiplicant = random.randint(10, 99)
-        multiplications.add(Multiplication(table, multiplicant, config.resolve))
+        multiplications.add(Multiplication(table, multiplicant))
     if config.includeTimeTables:
         for mult in range(0, int(maxCount /2)):
             table = config.timetables[random.randint(0, len(config.timetables)-1)]
             multiplicant = random.randint(0,12)
-            multiplications.add(Multiplication(table, multiplicant, config.resolve))
+            multiplications.add(Multiplication(table, multiplicant))
     return multiplications
 
 def generateSubstractions(config):
@@ -50,7 +51,7 @@ def generateSubstractions(config):
     for i in range(0, maxCount):
         first = random.randint(0, 999)
         second = random.randint(0, 999)
-        substractions.add(Substraction(first,second, config.resolve))
+        substractions.add(Substraction(first,second))
     return substractions
 
 def generateAdditions(config):
@@ -68,7 +69,7 @@ def generateAdditions(config):
     for i in range(0, maxCount):
         first = random.randint(minNumber, maxNumber)
         second = random.randint(minNumber, maxNumber)
-        additions.add(Addition(first,second,  config.resolve))
+        additions.add(Addition(first,second))
     return additions
 
 def generateTimes(config):
@@ -80,7 +81,7 @@ def generateTimes(config):
     for i in range(0, maxCount):
         first = random.randint(1, 12) # TODO add 24h support
         second = random.choice(minutes)
-        times.add(Times(first,second, config.resolve))
+        times.add(Times(first,second))
     return times
 
 def generateLetters(config):
@@ -92,17 +93,17 @@ def generateLetters(config):
     for i in range(0, maxCount):
         combo1 = candidates[random.randint(0, len(candidates) -1)]
         combo2 = candidates[random.randint(0, len(candidates) -1)]
-        letters.add(FillLetterPair(combo1, combo2, config.resolve))
+        letters.add(Letters(combo1, combo2))
     return letters
 
 def generateSpirals(config):
-    maxCount = getMaxCount(config)
+    maxCount = 2 #getMaxCount(config)
     spirals  = set()
     if not config.includeSpirals:
         return spirals
     for i in range(0, maxCount):
         iterations = random.randint(140, 210)
-        spirals.add(FillSpiral(iterations, config.resolve))
+        spirals.add(Spiral(iterations))
     return spirals
 
 def generate(config):

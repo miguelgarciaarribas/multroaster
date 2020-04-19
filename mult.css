@@ -21,40 +21,35 @@ body {
   grid-template-columns: 40% 60%;
   grid-row-gap: 10px;
   grid-column-gap: 90px;
+  align-items: center;
 
 }
+
 
 .box {
   border-radius: 5px;
-  padding: 15px;
-  font-size: 150%;
-  background-color: #fea
-}
-
-.clockbox {
-  border-radius: 5px;
-  padding: 15px;
+  padding: 2px;
   font-size: 150%;
   background-color: #fea;
-  grid-row-end: span 3;
+  height: 6vh;
+}
+
+.canvasbox {
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 150%;
+  background-color: #fea;
+  grid-row-end: span 4;
   grid-column-end: span 1;
+  height:400px;
 }
 
 .result {
     color: #aaa;
-    display: none
+    display: none;
 }
 
 .letterbox {
-  border-radius: 5px;
-  padding: 15px;
-  font-size: 150%;
-  background-color: #fea;
-  grid-row-end: span 2;
-  grid-column-end: span 1;
-}
-
-.spiralbox {
   border-radius: 5px;
   padding: 15px;
   font-size: 150%;
