@@ -18,15 +18,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.operationAmountSlider.valueChanged.connect(self.operationSliderValuechange)
         self.operationCount.setText(str(self.operationAmountSlider.value()))
 
+        # Main Tab
+        self.tabWidget.currentChanged.connect(self.tabChanged)
+
+    def tabChanged(self, current):
+        if (current == 0):
+            self.studentName.setText("Bruno Garcia")
+        else:
+            self.studentName.setText("Maya Garcia")
+
     def operationSliderValuechange(self):
         self.operationCount.setText(str(self.operationAmountSlider.value()))
 
     def generateMult(self):
-        config = self.getConfig()
+        config = self.generateConfig()
         generate(config)
-        self.resultDisplay.setSource(QtCore.QUrl("res.html"))
+        self.resultDisplay.setSource(QtCore.QUrl(config.fileName))
 
-    def getConfig(self):
+    def generateConfig(self):
         """ Loads a configuration based on the UI settings"""
         
         timetables = []
@@ -54,6 +63,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         config.studentName = self.studentName.text()
 
+        # TODO generate temporary html files based on date and student
+        config.fileName = "res.html"
+
         config.maxCount = self.operationAmountSlider.value()
 
         config.includeAdditions = self.additionConfig.isChecked()
@@ -62,6 +74,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         config.includeMultiplications = self.multiplicationConfig.isChecked()
         config.includeTimeTables = self.timeTableConfig.isChecked()
         config.includeTimes = self.timeConfig.isChecked()
+
+        # TODO: Discriminate numbers and letters
+        config.includeLetters = self.letterConfig.isChecked()
+        config.includeSpirals = self.spiralConfig.isChecked()
+
         
         return config
 

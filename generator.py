@@ -1,6 +1,6 @@
 import random
 
-from multiconfig import Addition, MultiConfig, Multiplication, Substraction, Times
+from multiconfig import Addition, FillLetterPair, FillSpiral, MultiConfig, Multiplication, Substraction, Times
 from multiprinter import MultiPrinter
 
 def getMaxCount(config):
@@ -12,6 +12,10 @@ def getMaxCount(config):
     if config.includeSubstractions:
         operations +=1
     if config.includeTimes:
+        operations +=1
+    if config.includeLetters:
+        operations +=1
+    if config.includeSpirals:
         operations +=1
 
     if operations > 0:
@@ -79,12 +83,37 @@ def generateTimes(config):
         times.add(Times(first,second, config.resolve))
     return times
 
+def generateLetters(config):
+    maxCount = getMaxCount(config)
+    letters = set()
+    candidates = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    if not config.includeLetters:
+        return letters
+    for i in range(0, maxCount):
+        combo1 = candidates[random.randint(0, len(candidates) -1)]
+        combo2 = candidates[random.randint(0, len(candidates) -1)]
+        letters.add(FillLetterPair(combo1, combo2, config.resolve))
+    return letters
+
+def generateSpirals(config):
+    maxCount = getMaxCount(config)
+    spirals  = set()
+    if not config.includeSpirals:
+        return spirals
+    for i in range(0, maxCount):
+        iterations = random.randint(140, 210)
+        spirals.add(FillSpiral(iterations, config.resolve))
+    return spirals
+
 def generate(config):
     multiplications =  generateMultiplications(config)
     substractions = generateSubstractions(config)
     additions = generateAdditions(config)
     times = generateTimes(config)
-    result = list(multiplications) + list( substractions) + list(additions) + list(times)
+    letters = generateLetters(config)
+    spirals = generateSpirals(config)
+    result = list(multiplications) + list( substractions) + list(additions) + \
+             list(times) + list(letters) + list(spirals)
     random.shuffle(result)
 
     printer = MultiPrinter()

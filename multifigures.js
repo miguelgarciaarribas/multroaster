@@ -18,29 +18,29 @@ function drawTimes(canvas_id, diameter, length, width) {
     ctx.textAlign="center";
 
     for (i = 0; i <= 360  ; i += 360 / 60) {
-	isHour = (i % 15) === 0;
-	degrees = i;
-	ctx.rotate(degrees * Math.PI / 180);
-	ctx.translate(radius, 0);
+        isHour = (i % 15) === 0;
+        degrees = i;
+        ctx.rotate(degrees * Math.PI / 180);
+        ctx.translate(radius, 0);
 
-	if (isHour) {
-	    ctx.fillRect(0, 0, largetick, 5);
-	    if (i != 0) {
-		ctx.translate(30, 5);
-		ctx.rotate(-degrees * Math.PI / 180);
-		var number = ((i / 30) + 3) % 12;
-		if (number === 0)
-		    number = 12
-		ctx.fillText(number , 0, 0);
-		ctx.rotate(degrees * Math.PI / 180);
-		ctx.translate(-30, -5);
-	    }
-	} else {
-	    ctx.fillRect(0, 0, smalltick, 5);
-	}
+        if (isHour) {
+            ctx.fillRect(0, 0, largetick, 5);
+            if (i != 0) {
+                ctx.translate(30, 5);
+                ctx.rotate(-degrees * Math.PI / 180);
+                var number = ((i / 30) + 3) % 12;
+                if (number === 0)
+                    number = 12
+                ctx.fillText(number , 0, 0);
+                ctx.rotate(degrees * Math.PI / 180);
+                ctx.translate(-30, -5);
+            }
+        } else {
+            ctx.fillRect(0, 0, smalltick, 5);
+        }
 
-	ctx.translate(-radius, 0);
-	ctx.rotate(-degrees * Math.PI / 180);
+        ctx.translate(-radius, 0);
+        ctx.rotate(-degrees * Math.PI / 180);
     }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -90,4 +90,25 @@ function drawHandles(canvas_id, hour, minute, diameter, length, width) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
+function drawSpiral(canvas_id, iterations) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    var radius = 0;
+    var angle = 0;
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = "black"; // "#0096FF"; // blue-ish color
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2, canvas.height / 2);  // TODO Do this for the clock instead of passing dimesions
+    for (var n = 0; n < iterations; n++) {
+        radius += 0.75;
+        // make a complete circle every 50 iterations
+        angle += (Math.PI * 2) / 50;
+        var x = canvas.width / 2 + radius * Math.cos(angle);
+        var y = canvas.height / 2 + radius * Math.sin(angle);
+        ctx.lineTo(x, y);
+    }
 
+    ctx.stroke();
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}

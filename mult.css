@@ -1,3 +1,8 @@
+@font-face {
+  font-family: kidsfont;
+  src: url(Trace-lxy0.ttf);
+}
+
 body {
   margin: 30px;
 }
@@ -38,4 +43,27 @@ body {
 .result {
     color: #aaa;
     display: none
+}
+
+.letterbox {
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 150%;
+  background-color: #fea;
+  grid-row-end: span 2;
+  grid-column-end: span 1;
+}
+
+.spiralbox {
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 150%;
+  background-color: #fea;
+  grid-row-end: span 2;
+  grid-column-end: span 1;
+}
+
+.kidstext {
+    font-family: kidsfont;
+    font-size: 700%;
 }

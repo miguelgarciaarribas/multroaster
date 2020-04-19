@@ -13,7 +13,7 @@ class MultiPrinter:
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="mult.css">
-<script src="multiclock.js"></script>
+<script src="multifigures.js"></script>
 <script>
 function toggleResults() {
   var results = document.getElementsByClassName('result');

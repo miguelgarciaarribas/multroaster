@@ -2,153 +2,15 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="mult.css"/>
-// <script>
 
 
-// function move(x, y, color) {
-
-// const canvas = document.getElementById('canvas');
-// const ctx = canvas.getContext('2d');
-
-// // Moved square
-// ctx.translate(x, y);
-// ctx.fillStyle = color;
-// ctx.fillRect(0, 0, 80, 80)
-
-// ctx.setTransform(1, 0, 0, 1, 0, 0);
-// }
-
-
-// function center(ctx) {
-//     ctx.translate(200, 200);
-//     ctx.fillStyle = 'blue';
-//     ctx.fillRect(0, 0, 1, 1);
-    
-// }
-
-// function rotateNumber(degrees, color) {
-//     const canvas = document.getElementById('canvas');
-//     const ctx = canvas.getContext('2d');
-
-//     ctx.font = 200*0.15 + "px arial";
-//     ctx.textBaseline="middle";
-//     ctx.textAlign="center";
-    
-//     ctx.rotate(degrees * Math.PI / 180);    
-//     ctx.translate(50, 0);
-
-//     ctx.fillStyle = color;
-//     ctx.rotate(-degrees * Math.PI / 180);    
-//     ctx.fillText('2', 0, 0);
-//     // ctx.fillRect(0, 0, 30, 10);
-//     ctx.rotate(degrees * Math.PI / 180);    
-//     ctx.translate(-50, 0);
-//     ctx.rotate(-degrees * Math.PI / 180);
- 
-
-    
-//     // ctx.setTransform(1, 0, 0, 1, 0, 0);
-// }
-
-
-// function drawTimes(diameter, length, width) {
-//     const canvas = document.getElementById('canvas');
-//     const ctx = canvas.getContext('2d');
-//     ctx.fillStyle = 'black';
-//     radius = diameter / 2
-//     smalltick = radius / 20
-//     largetick = radius / 10
-    
-//     ctx.translate(length/2, width/2);
-
-//     ctx.font = radius*0.15 + "px arial";
-//     ctx.textBaseline="middle";
-//     ctx.textAlign="center";
-
-//     for (i = 0; i <= 360  ; i += 360 / 60) {	
-// 	isHour = (i % 15) === 0; 
-	    
-// 	degrees = i;
-// 	ctx.rotate(degrees * Math.PI / 180);    
-// 	ctx.translate(radius, 0);
-
-	
-// 	if (isHour) {
-// 	    ctx.fillRect(0, 0, largetick, 5);
-// 	    if (i != 0) {
-// 		ctx.translate(30, 5);
-// 		ctx.rotate(-degrees * Math.PI / 180);    
-// 		ctx.fillText(((i / 30) + 3) % 12 , 0, 0);
-// 		ctx.rotate(degrees * Math.PI / 180);
-// 		ctx.translate(-30, -5);
-// 	    }
-	    
-// 	} else {
-// 	    ctx.fillRect(0, 0, smalltick, 5);
-// 	}
-
-// 	ctx.translate(-radius, 0);
-// 	ctx.rotate(-degrees * Math.PI / 180);
-//     }
-
-    
-//     ctx.setTransform(1, 0, 0, 1, 0, 0);
-// }
-
-
-
-// function drawHandles(hour, minute, diameter) {
-//     const canvas = document.getElementById('canvas');
-//     const ctx = canvas.getContext('2d');
-//     center(ctx);
-//     ctx.fillStyle = 'black';
-
-//     minuteLength = (diameter/2)*0.8;
-//     hourLength = (diameter/2)*0.6;
-
-//     var hourAngle = ((hour % 12) * 30) - 90;
-//     hourAngle = hourAngle + ((minute / 60) * 30);    
-    
-//     var minuteAngle = (minute * 6) - 90;
-
-//     ctx.rotate(hourAngle * Math.PI / 180);    
-//     ctx.fillRect(0, 0, hourLength, 2);
-//     ctx.translate(hourLength, 3);
-//     ctx.rotate(35 * Math.PI / 180);
-//     ctx.fillRect(0, 0, -15, -3);
-//     ctx.rotate(-35 * 2 *  Math.PI / 180);
-//     ctx.fillRect(0, 0, -15, -3);
-//     ctx.rotate(35 *  Math.PI / 180);
-//     ctx.translate(-hourLength, -3);
-//     ctx.rotate(-hourAngle * Math.PI / 180);
-
-    
-//     ctx.rotate(minuteAngle * Math.PI / 180);    
-//     ctx.fillRect(0, 0, minuteLength, 2);
-//     ctx.translate(minuteLength, 2);
-//     ctx.rotate(35 * Math.PI / 180);
-//     ctx.fillRect(0, 0, -15, -3);
-//     ctx.rotate(-35 * 2 *  Math.PI / 180);
-//     ctx.fillRect(0, 0, -15, -3);
-//     ctx.rotate(35 *  Math.PI / 180);
-//     ctx.translate(-minuteLength, -2);
-//     ctx.rotate(-minuteAngle * Math.PI / 180);    
-
-//     ctx.setTransform(1, 0, 0, 1, 0, 0);
-// }
-
-
-// </script>
-
-<script src="multiclock.js"></script>
+<script src="multifigures.js"></script>
 
 <script>
 function ale() {
     alert("hello");
 }
 </script>
-
-
 
 
 </head>
@@ -166,12 +28,20 @@ function ale() {
     <canvas id="canvas1015" width="300" height="300">
     <script>drawClock("canvas1015",200, 300, 300,5,10)</script>
   </div>
-  <div class="box">G</div>
+  <div class="clockbox">
+    <canvas id="spiral" width="300" height="300">
+    <script>drawSpiral("spiral",167)</script>
+  </div>
   <div class="box">H</div>
   <div class="box">Y</div>
 </div>
 
-<input type="button" value="draw" onclick="drawClock(200, 400, 400, 6, 25)">
+<p class="kidstext"> Hola MAYA </p>
+
+
+
+
+
 <footer> <h5>Page footer content goes here</h5></footer>
 
 
