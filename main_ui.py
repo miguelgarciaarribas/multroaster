@@ -37,7 +37,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def generateConfig(self):
         """ Loads a configuration based on the UI settings"""
-        
+
         timetables = []
         if self.timeTable1.isChecked():
             timetables.append(1)
@@ -79,7 +79,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         config.includeLetters = self.letterConfig.isChecked()
         config.includeSpirals = self.spiralConfig.isChecked()
 
-        
+
         return config
 
 

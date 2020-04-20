@@ -10,7 +10,7 @@ class MultiConfig:
 
         # Max multiplicator
         self.maxmult = 12
-        
+
         # Number of multiplications to generate
         self.maxCount = 0
 

@@ -1,7 +1,7 @@
 import random
 
 from multiconfig import MultiConfig
-from operation import Addition, Letters, Spiral, Multiplication, Substraction, Times
+from operation import Addition, Letters, Spiral, Multiplication, Substraction, Time
 from multiprinter import MultiPrinter
 
 def getMaxCount(config):
@@ -81,7 +81,7 @@ def generateTimes(config):
     for i in range(0, maxCount):
         first = random.randint(1, 12) # TODO add 24h support
         second = random.choice(minutes)
-        times.add(Times(first,second))
+        times.add(Time(first,second))
     return times
 
 def generateLetters(config):

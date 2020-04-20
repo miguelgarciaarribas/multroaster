@@ -24,17 +24,128 @@ function ale() {
   <div class="box">D</div>
   <div class="box">E</div>
   <div class="box">F</div>
-  <div class="clockbox">
+  <div class="canvasbox">
     <canvas id="canvas1015" width="300" height="300">
     <script>drawClock("canvas1015",200, 300, 300,5,10)</script>
   </div>
-  <div class="clockbox">
+  <div class="canvasbox">
     <canvas id="spiral" width="300" height="300">
     <script>drawSpiral("spiral",167)</script>
   </div>
-  <div class="box">H</div>
-  <div class="box">Y</div>
+
+  <div class="canvasbox">
+    <div>
+      <div class="fruits"> &#x1F434; &#x1F434; &#x1F434; </div>
+      <div class="fruits"> &#x1F434; &#x1F434; &#x1F434; &#x1F434; &#x1F434; &#x1F434;</div>
+      +
+      <div class="fruits"> &#x1F410; &#x1F410; &#x1F410; </div>
+    </div>
+
+     =
+   </span>  <span> ? </span>
 </div>
+
+ <div class="canvasbox">
+  <div class="fruitsbox">
+    <div>
+      <div class="fruits"> &#x1F434; &#x1F434; &#x1F434; </div>
+      <div class="fruits"> &#x1F434; &#x1F434; &#x1F434; &#x1F434; &#x1F434; &#x1F434;</div>
+      +
+      <div class="fruits"> &#x1F42E; &#x1F42E; &#x1F42E; </div>
+
+    </div>
+
+     =
+   </div>
+
+ </div>
+
+ <div class="canvasbox">
+  <div>
+  <div class="fruitsbox">
+    <div>
+      <div class="fruits"> &#x1F3E0; &#x1F3E0; &#x1F3E0; </div>
+      <div class="fruits"> &#x1F3E0;</div>
+      <div class="fruits">  + </div>
+      <div class="fruits"> &#x1F3E2; &#x1F3E2; &#x1F3E2;</div>
+    </div>
+  </div>
+  <div class="fruits"> = </div>
+  </div>
+ </div>
+
+ <div class="gridbox">
+  <div class="number"> 1) </div>
+  <div class="fruitsbox">
+      <div class="fruits"> &#x1F3E0; &#x1F3E0; &#x1F3E0; </div>
+      <div class="fruits"> &#x1F3E0; &#x1F3E0;</div>
+  </div>
+  <div class="fruitsbox">
+    <div class="fruits"> + </div>
+  </div>
+  <div class="fruitsbox">
+    <div class="fruits"> 6 =</div>
+  </div>
+
+ </div>
+
+
+ <div class="gridbox">
+   <div class="number"> 2) </div>
+   <div>
+    <canvas id="spiral23" width="300" height="300">
+    <script>drawSpiral("spiral23",167)</script>
+   </div>
+   <div class="fruitsbox">
+    <div class="fruits"> 6 = </div>
+   </div>
+ </div>
+
+ <div class="gridbox">
+   <div class="number"> 2) </div>
+   <div>
+    <canvas id="canvas1123" width="300" height="300">
+      <script>drawClock("canvas1123",200, 300, 300,5,10)</script>
+      </div>
+
+   <div class="fruitsbox">
+    <div class="fruits"> 6 =</div>
+   </div>
+ </div>
+
+
+  <div class="box">Y</div>
+
+
+  <div class="gridbox">
+    <canvas id="canvas666" width="300" height="300">
+   </div>
+
+  <div class="box">Y</div>
+
+<script>
+//var canvas = document.getElementById("canvas666");
+//var ctx    = canvas.getContext('2d');
+//fitToContainer(canvas);
+
+drawClock("canvas666", 200, 2, 15);
+
+function fitToContainer(canvas){
+
+console.log("ftc original length " + canvas.height);
+console.log("ftc original width " + canvas.width);
+
+  canvas.style.width='100%';
+  canvas.style.height='100%';
+  canvas.width  = canvas.offsetWidth;
+ canvas.height = canvas.offsetHeight;
+
+console.log("ftc length " + canvas.height);
+console.log("ftc width " + canvas.width);
+
+}
+
+</script>
 
 <p class="kidstext"> Hola MAYA </p>
 

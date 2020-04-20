@@ -11,8 +11,7 @@ function drawTimes(canvas_id, diameter) {
     smalltick = radius / 20
     largetick = radius / 10
 
-    console.log("length " + canvas.height);
-    ctx.translate(canvas.height/ 2, canvas.width / 2);
+    ctx.translate(canvas.width/ 2, canvas.height / 2);
 
     ctx.font = radius*0.15 + "px arial";
     ctx.textBaseline="middle";
@@ -51,7 +50,7 @@ function drawHandles(canvas_id, hour, minute, diameter) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
 
-    ctx.translate(canvas.height / 2, canvas.width / 2);
+    ctx.translate(canvas.width/ 2, canvas.height / 2);
     ctx.fillStyle = 'black';
 
     ctx.beginPath();

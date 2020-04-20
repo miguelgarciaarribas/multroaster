@@ -44,19 +44,32 @@ body {
   height:400px;
 }
 
-.result {
-    color: #aaa;
-    display: none;
+.flexbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
 }
 
 .letterbox {
   border-radius: 5px;
-  padding: 15px;
+  padding: 2px;
   font-size: 150%;
   background-color: #fea;
   grid-row-end: span 2;
   grid-column-end: span 1;
 }
+
+.order {
+    font-size: 120%;
+    font-weight: 700; /* bold */
+}
+
+.result {
+    color: #aaa;
+    display: none;
+}
+
 
 .kidstext {
     font-family: kidsfont;
