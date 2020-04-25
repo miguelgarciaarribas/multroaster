@@ -99,9 +99,9 @@ class Times(Operation):
         return str(self.first).zfill(2) + ' : ' + str(self.second).zfill(2)
 
     def canvas(self):
-       identifier='"clock'+str(self.first)+str(self.second)+'"'
-       return '<canvas id=' + identifier + ' width="300" height="300"</canvas>\n' +  \
-           '<script>drawClock(' + identifier + ', 200, 300, 300, ' + str(self.first) + ', ' \
+       identifier='"clock'+str(self.first)+str(self.second) + str(random.randint(0,10000)) + '"'
+       return '<canvas id=' + identifier + ' width="300" height="300" </canvas>\n' +  \
+           '<script>drawClock(' + identifier + ', 200, ' + str(self.first) + ', ' \
                + str(self.second) + ')</script>'
        # TODO: build support for  digital times
 

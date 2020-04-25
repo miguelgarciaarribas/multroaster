@@ -97,7 +97,7 @@ def generateLetters(config):
     return letters
 
 def generateSpirals(config):
-    maxCount = 2 #getMaxCount(config)
+    maxCount = getMaxCount(config)
     spirals  = set()
     if not config.includeSpirals:
         return spirals

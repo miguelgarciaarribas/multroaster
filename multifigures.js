@@ -1,9 +1,9 @@
-function drawClock(canvas_id, diameter, length, width, hour, minute) {
-    drawTimes(canvas_id, diameter, length, width);
-    drawHandles(canvas_id, hour, minute, diameter, length, width);
+function drawClock(canvas_id, diameter, hour, minute) {
+    drawTimes(canvas_id, diameter);
+    drawHandles(canvas_id, hour, minute, diameter);
 }
 
-function drawTimes(canvas_id, diameter, length, width) {
+function drawTimes(canvas_id, diameter) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = 'black';
@@ -11,7 +11,8 @@ function drawTimes(canvas_id, diameter, length, width) {
     smalltick = radius / 20
     largetick = radius / 10
 
-    ctx.translate(length/2, width/2);
+    console.log("length " + canvas.height);
+    ctx.translate(canvas.height/ 2, canvas.width / 2);
 
     ctx.font = radius*0.15 + "px arial";
     ctx.textBaseline="middle";
@@ -46,11 +47,11 @@ function drawTimes(canvas_id, diameter, length, width) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
-function drawHandles(canvas_id, hour, minute, diameter, length, width) {
+function drawHandles(canvas_id, hour, minute, diameter) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
 
-    ctx.translate(length/2, width/2);
+    ctx.translate(canvas.height / 2, canvas.width / 2);
     ctx.fillStyle = 'black';
 
     ctx.beginPath();
@@ -91,14 +92,16 @@ function drawHandles(canvas_id, hour, minute, diameter, length, width) {
 }
 
 function drawSpiral(canvas_id, iterations) {
+    const segments = [5, 5];
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     var radius = 0;
     var angle = 0;
-    ctx.lineWidth = 8;
-    ctx.strokeStyle = "black"; // "#0096FF"; // blue-ish color
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "black";
+    ctx.setLineDash(segments);
     ctx.beginPath();
-    ctx.moveTo(canvas.width / 2, canvas.height / 2);  // TODO Do this for the clock instead of passing dimesions
+    ctx.moveTo(canvas.width / 2, canvas.height / 2);
     for (var n = 0; n < iterations; n++) {
         radius += 0.75;
         // make a complete circle every 50 iterations
