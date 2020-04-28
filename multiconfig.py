@@ -14,13 +14,16 @@ class MultiConfig:
         # Number of multiplications to generate
         self.maxCount = 0
 
+
         # Main variants
+        # TODO: This can be a set of OperationType now.
         self.includeMultiplications = True
         self.includeAdditions = True
         self.includeSubstractions = True
         self.includeTimes = True
         self.includeLetters = True
         self.includeSpirals = True
+        self.includeEmojiAdditions = True
 
         # Sub variants
         self.includeTimeTables =  True

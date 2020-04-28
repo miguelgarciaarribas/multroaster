@@ -7,7 +7,7 @@ class MultiPrinter:
         date = today.strftime("%A %B %d %Y")
 
 #TODO Replace with a proper template
-        
+
         result = """
 <!DOCTYPE html>
 <html>
@@ -41,5 +41,5 @@ function toggleResults() {
             order = order +1
 
         result += '</div></body>'
+        print(result)
         return result
-        

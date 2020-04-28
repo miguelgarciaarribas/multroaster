@@ -1,7 +1,7 @@
 import random
 
 from multiconfig import MultiConfig
-from operation import Addition, Letters, Spiral, Multiplication, Substraction, Time
+from operation import Addition, EmojiAddition, Letters, Spiral, Multiplication, Substraction, Time
 from multiprinter import MultiPrinter
 
 def getMaxCount(config):
@@ -17,6 +17,8 @@ def getMaxCount(config):
     if config.includeLetters:
         operations +=1
     if config.includeSpirals:
+        operations +=1
+    if config.includeEmojiAdditions:
         operations +=1
 
     if operations > 0:
@@ -106,6 +108,22 @@ def generateSpirals(config):
         spirals.add(Spiral(iterations))
     return spirals
 
+def generateEmojiAdditions(config):
+    maxCount = getMaxCount(config)
+    emojis = set()
+    if not config.includeEmojiAdditions:
+        return emojis
+    maxNumber = 9
+    minNumber = 1
+
+    for i in range(0, maxCount):
+        first = random.randint(minNumber, maxNumber)
+        second = random.randint(minNumber, maxNumber)
+        emojis.add(EmojiAddition(first,second))
+    return emojis
+
+
+
 def generate(config):
     multiplications =  generateMultiplications(config)
     substractions = generateSubstractions(config)
@@ -113,12 +131,12 @@ def generate(config):
     times = generateTimes(config)
     letters = generateLetters(config)
     spirals = generateSpirals(config)
+    emojis = generateEmojiAdditions(config)
     result = list(multiplications) + list( substractions) + list(additions) + \
-             list(times) + list(letters) + list(spirals)
+             list(times) + list(letters) + list(spirals)+ list(emojis)
     random.shuffle(result)
 
     printer = MultiPrinter()
     result = printer.print(config, result)
-    print(result)
     with open(config.fileName, "w") as f:
         f.write(result)

@@ -6,7 +6,7 @@ from generator import *
 def createOperations():
     config = MultiConfig()
     config.timetables = [1, 2, 3, 4, 5, 8]
-    config.maxCount = 24
+    config.maxCount = 30
     config.fileName = "restest.html"
     generate(config)
 

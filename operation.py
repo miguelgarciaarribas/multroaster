@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import random
 
-from operationPrinter import CanvasPrinter, DivPrinter
+from operationPrinter import CanvasPrinter, DivPrinter, EmojiPrinter
 
 from enum import Enum
 
@@ -15,7 +15,8 @@ class OperationType(Enum):
      Spiral = 7
      DottedLetter = 8
      PartialWrite = 9 # Not Supported
-     Undefined = 10
+     EmojiAddition = 10
+     Undefined = 11
 
 
 class Operation(metaclass=ABCMeta):
@@ -62,8 +63,8 @@ class ArithmeticOperation(Operation):
 
     def display(self, order):
         return '<div class="box flexbox"> <div class="order"> %d) </div>' \
-              ' <span class="control"> %s </span> <span class=result> %s </span>' \
-              ' </div>\n' % \
+             ' <span class="control"> %s </span> <span class=result> %s </span>' \
+             ' </div>\n' % \
     (order, self._operation(), str(self.calculate()))
 
 class Multiplication(ArithmeticOperation):
@@ -171,3 +172,16 @@ class Letters(Operation):
 
     def display(self, order):
         return self.printer.display(order)
+
+class EmojiAddition(Addition):
+    """ Variant of addition that shows emojis for one of the operands.
+    """
+    def __init__(self, first, second):
+         super().__init__(first, second)
+         self.printer = EmojiPrinter(self)
+
+    def type(self):
+          return OperationType.EmojiAddition
+
+    def display(self, order):
+         return  self.printer.display(order)

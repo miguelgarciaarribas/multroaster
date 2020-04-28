@@ -70,8 +70,19 @@ body {
     display: none;
 }
 
-
 .kidstext {
     font-family: kidsfont;
     font-size: 700%;
+}
+
+.emojistep {
+    font-size: 300%;
+}
+
+
+.emojigroup {
+  border-radius: 5px;
+  margin:10px;
+  align-items:center;
+  text-align:center;
 }

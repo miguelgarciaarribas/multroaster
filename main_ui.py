@@ -74,6 +74,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         config.includeMultiplications = self.multiplicationConfig.isChecked()
         config.includeTimeTables = self.timeTableConfig.isChecked()
         config.includeTimes = self.timeConfig.isChecked()
+        config.includeEmojiAdditions = self.emojiConfig.isChecked()
 
         # TODO: Discriminate numbers and letters
         config.includeLetters = self.letterConfig.isChecked()

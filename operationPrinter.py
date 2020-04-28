@@ -67,3 +67,52 @@ class DivPrinter(OperationPrinter):
         text = '<div class=kidstext> %s </div>\n' % \
             (str(self.operation.first) + ' ' + str(self.operation.second))
         return super().display(order) % (text, '')
+
+class EmojiPrinter(OperationPrinter):
+    def __init__(self, operation):
+        # assert issubclass(operation, operation.ArithmeticOperation)
+        super().__init__(operation)
+        self.EMOJIS= ['&#x1F3E0;', # house
+                  '&#x1F434;', # horse
+                  '&#x1F42E;', # cow
+                  '&#x1F410;'  # goat
+        ]
+        self.EMOJIS_PER_ROW = 4
+
+
+    def cssClass(self):
+        return 'letterbox'
+
+    def generateEmoji(self, argument):
+        # Emoji of the operation
+        emoji = self.EMOJIS[random.randint(0, len(self.EMOJIS) -1)]
+
+        # Divide the argument in groups of 4
+        rows = argument // self.EMOJIS_PER_ROW
+        lastrow = argument % self.EMOJIS_PER_ROW
+        result = ' <div class="emojigroup">'
+        for i in range(0, rows):
+            result += '<div class="emojistep">'
+            result += emoji + emoji + emoji + emoji + '</div>'
+        if lastrow >0:
+            result+= '<div class="emojistep">'
+            for i in range(0, lastrow):
+                result += emoji
+            result += '</div>'
+        result += '</div>'
+        return result
+
+    def generateString(self, st):
+        result = ' <div class="emojigroup">'
+        result +=  '<div class="emojistep">' + st + '</div>'
+        result += '</div>'
+        return result
+
+
+    def display(self, order):
+        text = '<div> %s </div>' % \
+            self.generateEmoji(self.operation.first) + \
+            self.generateString(self.operation.sign) + \
+            self.generateString(str(self.operation.second)) + \
+            self.generateString(' = ')
+        return super().display(order) % (text, '')
