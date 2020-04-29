@@ -46,6 +46,15 @@ function drawTimes(canvas_id, diameter) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
+function drawText(canvas_id, x, y, text) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    ctx.font = "18px Arial";
+    ctx.fillText(text, x, y);
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
 function drawHandles(canvas_id, hour, minute, diameter) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');

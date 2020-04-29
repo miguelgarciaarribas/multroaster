@@ -39,23 +39,30 @@ class CanvasPrinter(OperationPrinter):
     def cssClass(self):
         return 'canvasbox'
 
-    def runOperation(self, identifier):
+    def runOperation(self):
+        script = ''
         if self.operation.type() is operation.OperationType.Time:
-             return '<script>drawClock(' + identifier + ', 200, ' + str(self.operation.first) + ', ' \
-               + str(self.operation.second) + ')</script>'
+             script =  '<script>drawClock(' + self.identifier + ', 200, ' + str(self.operation.first) + ', ' \
+               + str(self.operation.second) + ')</script>\n'
+             if self.operation.delta != 0 and self.operation.sign is not None:
+                 direction = 'earlier'
+                 if self.operation.sign == '+':
+                     direction = 'later'
+                 script +=  '<script>drawText(' + self.identifier + ', 72, 293, "' + str(self.operation.delta) + \
+                 ' minutes ' + direction +'")</script>'
         elif self.operation.type() is operation.OperationType.Spiral:
-            return '<script>drawSpiral(' + self.identifier + ', '+ str(self.operation.first) + ' )</script>'
+            script = '<script>drawSpiral(' + self.identifier + ' , '+ str(self.operation.first) + ' )</script>\n'
 
         else : raise "runOperation not supported"
-
+        return script
 
     def canvas(self):
        return '<canvas id=' + self.identifier + ' width="' + str(self.width) + \
-             '" height="' + str(self.height) +'"> </canvas>\n'
+             '" height="' + str(self.height) + '"class="temp"> </canvas>\n'
 
 
     def display(self, order):
-        return super().display(order) % (self.canvas(), self.runOperation(self.identifier))
+        return super().display(order) % (self.canvas(), self.runOperation())
 
 
 class DivPrinter(OperationPrinter):

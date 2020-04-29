@@ -120,7 +120,6 @@ class Addition(ArithmeticOperation):
     def calculate(self):
         return self.first + self.second
 
-# TODO: create a GrapahicalOperation with common display logic for all the operations below
 
 class Time(Operation):
     """ Contains the logic for displaying a time. Current representation is though an
@@ -128,15 +127,34 @@ class Time(Operation):
 
        For example 02:45
     """
-    def __init__(self, first, second):
+    def __init__(self, first, second, delta=0, sign=None):
         super().__init__([first, second])
+        self.delta = delta
+        self.sign = sign
         self.printer = CanvasPrinter(self)
 
     def type(self):
         return OperationType.Time
 
     def calculate(self):
-        return str(self.first).zfill(2) + ' : ' + str(self.second).zfill(2)
+         minute = self.second
+         hour = self.first
+         if self.sign == "-":
+              minute -= self.delta
+              if minute < 0:
+                   minute +=60
+                   hour -=1
+                   if hour < 0:
+                        hour = 11
+         elif self.sign == "+":
+              minute += self.delta
+              if minute >=60:
+                   minute = minute % 60;
+                   hour += 1
+                   if hour > 12:
+                        hour = 12
+
+         return str(hour).zfill(2) + ' : ' + str(minute).zfill(2)
 
     def display(self, order):
         # TODO: build support for  digital times

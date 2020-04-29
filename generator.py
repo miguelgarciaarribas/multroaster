@@ -83,7 +83,11 @@ def generateTimes(config):
     for i in range(0, maxCount):
         first = random.randint(1, 12) # TODO add 24h support
         second = random.choice(minutes)
-        times.add(Time(first,second))
+        deltas = range(0, 55, 5)
+        delta = random.choice(deltas)
+        direction = random.choice(('+', '-', None))
+        times.add(Time(first, second, delta, direction))
+
     return times
 
 def generateLetters(config):

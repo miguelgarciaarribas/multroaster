@@ -24,10 +24,15 @@ function ale() {
   <div class="box">D</div>
   <div class="box">E</div>
   <div class="box">F</div>
-  <div class="canvasbox">
-    <canvas id="canvas1015" width="300" height="300">
-    <script>drawClock("canvas1015",200, 300, 300,5,10)</script>
-  </div>
+
+  <div class="canvasbox flexbox"> <div class="order"> 3) </div>
+    <canvas id="canvas126268" width="300" height="300" class="temp"> </canvas>
+ <span class=result> 04 : 00 </span> </div>
+  <script>drawClock("canvas126268", 200, 4, 0)</script>
+  <script>drawText("canvas126268", 65, 293, "10 minutes later")</script>
+
+
+
   <div class="canvasbox">
     <canvas id="spiral" width="300" height="300">
     <script>drawSpiral("spiral",167)</script>
