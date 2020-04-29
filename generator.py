@@ -89,13 +89,30 @@ def generateTimes(config):
 def generateLetters(config):
     maxCount = getMaxCount(config)
     letters = set()
-    candidates = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    vowels = 'aeiou'
+    consonants = 'bcdfghjklmnopqrstvwxyz'
+    digits = '0123456789'
+    cases = ['smallpair', 'capitalpair', 'numberpair']
+
     if not config.includeLetters:
         return letters
     for i in range(0, maxCount):
-        combo1 = candidates[random.randint(0, len(candidates) -1)]
-        combo2 = candidates[random.randint(0, len(candidates) -1)]
-        letters.add(Letters(combo1, combo2))
+        case = random.choice(cases)
+        if case == 'smallpair' or case == 'capitalpair':
+            combo1 = vowels[random.randint(0, len(vowels) -1)]
+            combo2 = consonants[random.randint(0, len(vowels) -1)]
+            if case is 'capitalpair':
+                combo1.capitalize()
+                combo2.capitalize()
+        elif case == 'numberpair':
+            combo1 = digits[random.randint(0, len(digits) -1)]
+            combo2 = digits[random.randint(0, len(digits) -1)]
+
+        order = random.choice((True, False))
+        if order:
+            letters.add(Letters(combo1, combo2))
+        else:
+            letters.add(Letters(combo2, combo1))
     return letters
 
 def generateSpirals(config):
