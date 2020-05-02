@@ -19,6 +19,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.operationCount.setText(str(self.operationAmountSlider.value()))
 
         # Main Tab
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget.currentChanged.connect(self.tabChanged)
 
     def tabChanged(self, current):

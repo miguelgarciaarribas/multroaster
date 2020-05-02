@@ -107,7 +107,7 @@ def generateLetters(config):
         if case == 'smallpair' or case == 'capitalpair':
             combo1 = vowels[random.randint(0, len(vowels) -1)]
             combo2 = consonants[random.randint(0, len(vowels) -1)]
-            if case is 'capitalpair':
+            if case == 'capitalpair':
                 combo1.capitalize()
                 combo2.capitalize()
         elif case == 'numberpair':
