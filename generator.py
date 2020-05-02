@@ -1,7 +1,7 @@
 import random
 
 from multiconfig import MultiConfig
-from operation import Addition, EmojiAddition, Letters, Spiral, Multiplication, Substraction, Time
+from operation import Addition, EmojiAddition, Grid, Letters, Spiral, Multiplication, Substraction, Time
 from multiprinter import MultiPrinter
 
 def getMaxCount(config):
@@ -20,6 +20,8 @@ def getMaxCount(config):
         operations +=1
     if config.includeEmojiAdditions:
         operations +=1
+    if config.includeGrids:
+        operations +=2 # Grids use two spaces
 
     if operations > 0:
         return int(config.maxCount / operations)
@@ -143,6 +145,21 @@ def generateEmojiAdditions(config):
         emojis.add(EmojiAddition(first,second))
     return emojis
 
+def generateGridWrites(config):
+    maxCount = getMaxCount(config)
+    candidates = ['triangle', 'square']
+    current = candidates.copy()
+    grids = set()
+    if not config.includeGrids:
+        return grids
+    for i in range(0, maxCount):
+        pattern = random.randint(0, len(current) -1)
+        grids.add(Grid(current[pattern]))
+        del current[pattern]
+        if not current:
+            current = candidates.copy()
+
+    return grids
 
 
 def generate(config):
@@ -153,8 +170,9 @@ def generate(config):
     letters = generateLetters(config)
     spirals = generateSpirals(config)
     emojis = generateEmojiAdditions(config)
+    grids = generateGridWrites(config)
     result = list(multiplications) + list( substractions) + list(additions) + \
-             list(times) + list(letters) + list(spirals)+ list(emojis)
+             list(times) + list(letters) + list(spirals) + list(emojis) + list(grids)
     random.shuffle(result)
 
     printer = MultiPrinter()

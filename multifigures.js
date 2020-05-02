@@ -123,3 +123,136 @@ function drawSpiral(canvas_id, iterations) {
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
+
+
+function drawGrid(canvas_id, pattern) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    const gridSize = 30
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    for (i = 0; i < canvas.height ; i+=gridSize) {
+	ctx.translate(0, i);
+	ctx.moveTo(0,0);
+	ctx.lineTo(canvas.width,0);
+	ctx.stroke();
+	ctx.translate(0, -i);
+    }
+
+    for (i = 0; i < canvas.width ; i+=gridSize) {
+	ctx.translate(i, 0);
+	ctx.moveTo(0,0);
+	ctx.lineTo(0, canvas.height);
+	ctx.stroke();
+	ctx.translate(-i, 0);
+    }
+
+    ctx.translate(0, gridSize*3);
+
+    if (pattern === 'square') {
+	drawSquarePath(canvas_id, gridSize, false /* dotted */);
+	ctx.translate(gridSize * 4, gridSize*3);
+	drawSquarePath(canvas_id, gridSize, true /* dotted */);
+    } else if (pattern == 'triangle') {
+	drawTriangularPath(canvas_id, gridSize, false /* dotted */);
+	ctx.translate(gridSize * 2, gridSize*3);
+	drawTriangularPath(canvas_id, gridSize, true /* dotted */);
+    } else {
+	drawText(canvas_id, 0, 0, "Pattern Not supported")
+    }
+
+
+    ctx.translate(0, gridSize*6);
+
+    if (pattern === 'square') {
+	drawSquarePath(canvas_id, gridSize, false /* dotted */);
+	ctx.translate(gridSize * 4, gridSize*6);
+	drawSquarePath(canvas_id, gridSize, true /* dotted */);
+    } else if (pattern == 'triangle') {
+	drawTriangularPath(canvas_id, gridSize, false /* dotted */);
+	ctx.translate(gridSize * 2, gridSize*6);
+	drawTriangularPath(canvas_id, gridSize, true /* dotted */);
+    } else {
+	drawText(canvas_id, 0, 0, "Pattern Not supported")
+    }
+
+    ctx.translate(0, gridSize*9);
+
+    if (pattern === 'square') {
+	drawSquarePath(canvas_id, gridSize, false /* dotted */);
+	ctx.translate(gridSize * 4, gridSize*9);
+	drawSquarePath(canvas_id, gridSize, true /* dotted */);
+    } else if (pattern == 'triangle') {
+	drawTriangularPath(canvas_id, gridSize, false /* dotted */);
+	ctx.translate(gridSize * 2, gridSize*9);
+	drawTriangularPath(canvas_id, gridSize, true /* dotted */);
+    } else {
+	drawText(canvas_id, 0, 0, "Pattern Not supported")
+    }
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+
+function drawSquarePath(canvas_id, gridSize, dotted) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    const segments = [5, 8, 5];
+
+    ctx.beginPath();
+    ctx.lineWidth = 7;
+    if (dotted)
+	ctx.setLineDash(segments);
+    else
+	ctx.setLineDash([])
+
+    ctx.moveTo(0,0);
+    ctx.lineTo(gridSize,0);
+    ctx.stroke();
+
+    ctx.translate(gridSize, 0);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0,-gridSize * 2);
+    ctx.stroke();
+
+    ctx.translate(0, -gridSize*2);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(gridSize*2, 0);
+    ctx.stroke();
+
+    ctx.translate(gridSize*2, 0);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, gridSize * 2);
+    ctx.stroke();
+
+    ctx.translate(0, gridSize*2);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(gridSize, 0);
+    ctx.stroke();
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+function drawTriangularPath(canvas_id, gridSize, dotted) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    const segments = [5, 8, 5];
+    ctx.beginPath();
+
+    ctx.lineWidth = 7;
+    if (dotted)
+	ctx.setLineDash(segments);
+    else
+	ctx.setLineDash([])
+    ctx.moveTo(0, 0);
+    ctx.lineTo(gridSize, -gridSize*2);
+    ctx.stroke();
+    ctx.translate(gridSize, -gridSize*2);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(gridSize, gridSize*2);
+    ctx.stroke();
+    ctx.translate(gridSize, gridSize*2);
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}

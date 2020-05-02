@@ -592,6 +592,25 @@
         <string>Generate</string>
        </property>
       </widget>
+      <widget class="QCheckBox" name="gridConfig">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>141</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Grid</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

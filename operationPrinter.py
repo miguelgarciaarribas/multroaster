@@ -33,7 +33,6 @@ class CanvasPrinter(OperationPrinter):
         super().__init__(operation)
         self.height = 300
         self.width = 300
-        self.operation = operation
         self.identifier = '"canvas'+ str(random.randint(0,1000000)) + '"'
 
     def cssClass(self):
@@ -58,12 +57,23 @@ class CanvasPrinter(OperationPrinter):
 
     def canvas(self):
        return '<canvas id=' + self.identifier + ' width="' + str(self.width) + \
-             '" height="' + str(self.height) + '"class="temp"> </canvas>\n'
+             '" height="' + str(self.height) + '"> </canvas>\n'
 
 
     def display(self, order):
         return super().display(order) % (self.canvas(), self.runOperation())
 
+class GridPrinter(CanvasPrinter):
+    def __init__(self, operation, pattern):
+        super().__init__(operation)
+        self.pattern = pattern
+        self.width = 1400
+
+    def cssClass(self):
+        return 'gridbox'
+
+    def runOperation(self):
+        return '<script>drawGrid(' + self.identifier + ', "' + self.pattern + '")</script>'
 
 class DivPrinter(OperationPrinter):
     def __init_(self, operation):

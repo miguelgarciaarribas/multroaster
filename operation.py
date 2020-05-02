@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import random
 
-from operationPrinter import CanvasPrinter, DivPrinter, EmojiPrinter
+from operationPrinter import CanvasPrinter, DivPrinter, EmojiPrinter, GridPrinter
 
 from enum import Enum
 
@@ -14,7 +14,7 @@ class OperationType(Enum):
      Time = 6
      Spiral = 7
      DottedLetter = 8
-     PartialWrite = 9 # Not Supported
+     GridWrite = 9
      EmojiAddition = 10
      Undefined = 11
 
@@ -120,6 +120,19 @@ class Addition(ArithmeticOperation):
     def calculate(self):
         return self.first + self.second
 
+class EmojiAddition(Addition):
+    """ Variant of addition that shows emojis for one of the operands.
+    """
+    def __init__(self, first, second):
+         super().__init__(first, second)
+         self.printer = EmojiPrinter(self)
+
+    def type(self):
+          return OperationType.EmojiAddition
+
+    def display(self, order):
+         return  self.printer.display(order)
+
 
 class Time(Operation):
     """ Contains the logic for displaying a time. Current representation is though an
@@ -175,6 +188,24 @@ class Spiral(Operation):
     def display(self, order):
         return self.printer.display(order)
 
+class Grid(Operation):
+    """ Contains the logic for drawing a spiral """
+    def __init__(self, pattern):
+        super().__init__([pattern])
+        self.pattern = pattern
+        self.printer = GridPrinter(self, pattern)
+
+    def type(self):
+        return OperationType.GridWrite
+
+    def calculate(self):
+        return self.first
+
+    def display(self, order):
+        return self.printer.display(order)
+
+
+
 
 class Letters(Operation):
     """ Contains the logic for filling a pair of letters pair in dotted format. """
@@ -190,16 +221,3 @@ class Letters(Operation):
 
     def display(self, order):
         return self.printer.display(order)
-
-class EmojiAddition(Addition):
-    """ Variant of addition that shows emojis for one of the operands.
-    """
-    def __init__(self, first, second):
-         super().__init__(first, second)
-         self.printer = EmojiPrinter(self)
-
-    def type(self):
-          return OperationType.EmojiAddition
-
-    def display(self, order):
-         return  self.printer.display(order)

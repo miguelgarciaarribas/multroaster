@@ -44,6 +44,16 @@ body {
   height:400px;
 }
 
+.gridbox {
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 150%;
+  background-color: #fea;
+  grid-row-end: span 4;
+  grid-column-end: span 2;
+  height:400px;
+}
+
 .flexbox {
     display: flex;
     justify-content: flex-start;
@@ -85,8 +95,4 @@ body {
   margin:10px;
   align-items:center;
   text-align:center;
-}
-
-.temp {
-    border:1px solid #d3d3d3;
 }
