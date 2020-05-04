@@ -69,12 +69,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         config.maxCount = self.operationAmountSlider.value()
 
+        # TODO: find a better way to provide fine tuning on operation options
         config.includeAdditions = self.additionConfig.isChecked()
         config.addFourDigits = self.addFourDigits.isChecked()
+
+        config.addFourDigits = self.addFourDigits.isChecked()
         config.includeSubstractions = self.substractionConfig.isChecked()
+
         config.includeMultiplications = self.multiplicationConfig.isChecked()
-        config.includeTimeTables = self.timeTableConfig.isChecked()
+        config.includeTimeTables = self.multiplicationConfig.isChecked()
+
         config.includeTimes = self.timeConfig.isChecked()
+        config.digitalTime = self.multiplicationConfig.isChecked()
+        config.addToTimes = self.multiplicationConfig.isChecked()
+
         config.includeEmojiAdditions = self.emojiConfig.isChecked()
         config.includeGrids = self.gridConfig.isChecked()
 

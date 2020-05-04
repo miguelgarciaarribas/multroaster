@@ -12,11 +12,12 @@ class OperationType(Enum):
      Division = 4 # Not Supported
      Fraction = 5 # Not Supported
      Time = 6
-     Spiral = 7
-     DottedLetter = 8
-     GridWrite = 9
-     EmojiAddition = 10
-     Undefined = 11
+     DigitalTime = 7
+     Spiral = 8
+     DottedLetter = 9
+     GridWrite = 10
+     EmojiAddition = 11
+     Undefined = 12
 
 
 class Operation(metaclass=ABCMeta):
@@ -172,6 +173,12 @@ class Time(Operation):
     def display(self, order):
         # TODO: build support for  digital times
         return self.printer.display(order)
+
+class DigitalTime(Time):
+     def __init__(self, first, second, delta=0, sign=None):
+          super().__init__(first, second, delta, sign)
+     def type(self):
+          return OperationType.DigitalTime
 
 class Spiral(Operation):
     """ Contains the logic for drawing a spiral """

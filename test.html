@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="mult.css"/>
+  <link rel="preload" href="digital-7.ttf" as="font" type="font/ttf">
+  <link rel="stylesheet" type="text/css" href="mult.css"/>
 
 
     <script src="multifigures.js"></script>
@@ -13,12 +14,20 @@ function ale() {
 }
 </script>
 
+<script>
+function toggleClock() {
+ drawDigitalClock("canvas156268");
+}
+</script>
 
 </head>
 <body>
 
-<div class="header"> Multiplications </div>
+  <div class="header"> Multiplications </div>
+<input type="button" value="Toggle Results" onClick=toggleClock() />
+
 <div class="wrapper">
+  <!-- <p class="kidstext"> Hola MAYA </p> -->
   <div class="box">Alaaaaaaaaaaavvv</div>
   <div class="box">Bamos</div>
   <div class="box">C</div>
@@ -27,10 +36,17 @@ function ale() {
   <div class="box">F</div>
 
   <div class="canvasbox flexbox"> <div class="order"> 4) </div>
-    <canvas id="canvas126268" width="300" height="300" class="temp"> </canvas>
+    <canvas id="canvas156268" width="300" height="300" class="temp"> </canvas>
  <span class=result> 04 : 00 </span> </div>
-  <script>drawClock("canvas126268", 200, 4, 0)</script>
-  <script>drawText("canvas126268", 65, 293, "10 minutes later")</script>
+  <script> drawDigitalClock("canvas156268", "00", "10")</script>
+
+
+  <div class="canvasbox flexbox"> <div class="order"> 4) </div>
+    <canvas id="canvas126223" width="300" height="300" class="temp"> </canvas>
+ <span class=result> 04 : 00 </span> </div>
+  <script>drawClock("canvas126223", 200, 4, 0)</script>
+  <script>drawText("canvas126223", 65, 293, "10 minutes later")</script>
+
 
   <div class="gridbox flexbox"> <div class="order"> 57) </div>
     <canvas id="canvas126269" width="1400" height="300" class="temp"> </canvas>
@@ -75,98 +91,9 @@ function ale() {
 
  </div>
 
- <div class="letterbox flexbox">
-  <div>
-  <div class="fruitsbox">
-    <div>
-      <div class="fruits"> &#x1F3E0; &#x1F3E0; &#x1F3E0; </div>
-      <div class="fruits"> &#x1F3E0;</div>
-      <div class="fruits">  + </div>
-      <div class="fruits"> &#x1F3E2; &#x1F3E2; &#x1F3E2;</div>
-    </div>
-  </div>
-  <div class="fruits"> = </div>
-  </div>
- </div>
 
- <div class="letterbox flexbox">
-  <div class="number"> 1) </div>
-  <div class="fruitsbox">
-      <div class="fruits"> &#x1F3E0; &#x1F3E0; &#x1F3E0; </div>
-      <div class="fruits"> &#x1F3E0; &#x1F3E0;</div>
-  </div>
-  <div class="fruitsbox">
-    <div class="fruits"> + </div>
-  </div>
-  <div class="fruitsbox">
-    <div class="fruits"> 6 =</div>
-  </div>
-
- </div>
-
-
- <div class="gridbox">
-   <div class="number"> 2) </div>
-   <div>
-    <canvas id="spiral23" width="300" height="300">
-    <script>drawSpiral("spiral23",167)</script>
-   </div>
-   <div class="fruitsbox">
-    <div class="fruits"> 6 = </div>
-   </div>
- </div>
-
- <div class="gridbox">
-   <div class="number"> 2) </div>
-   <div>
-    <canvas id="canvas1123" width="300" height="300">
-      <script>drawClock("canvas1123",200, 300, 300,5,10)</script>
-      </div>
-
-   <div class="fruitsbox">
-    <div class="fruits"> 6 =</div>
-   </div>
- </div>
-
-
-  <div class="box">Y</div>
-
-
-  <div class="gridbox">
-    <canvas id="canvas666" width="300" height="300">
-   </div>
-
-  <div class="box">Y</div>
-
-<script>
-//var canvas = document.getElementById("canvas666");
-//var ctx    = canvas.getContext('2d');
-//fitToContainer(canvas);
-
-drawClock("canvas666", 200, 2, 15);
-
-function fitToContainer(canvas){
-
-console.log("ftc original length " + canvas.height);
-console.log("ftc original width " + canvas.width);
-
-  canvas.style.width='100%';
-  canvas.style.height='100%';
-  canvas.width  = canvas.offsetWidth;
- canvas.height = canvas.offsetHeight;
-
-console.log("ftc length " + canvas.height);
-console.log("ftc width " + canvas.width);
-
-}
-
-</script>
 
 <p class="kidstext"> Hola MAYA </p>
-
-
-
-
 
 <footer> <h5>Page footer content goes here</h5></footer>
 

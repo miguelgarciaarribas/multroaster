@@ -12,6 +12,7 @@ class MultiPrinter:
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preload" href="digital-7.ttf" as="font" type="font/ttf">
 <link rel="stylesheet" type="text/css" href="mult.css">
 <script src="multifigures.js"></script>
 <script src="multigrid.js"></script>

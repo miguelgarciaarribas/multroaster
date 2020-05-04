@@ -46,10 +46,15 @@ function drawTimes(canvas_id, diameter) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
-function drawText(canvas_id, x, y, text) {
+function drawText(canvas_id, x, y, text, font) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
-    ctx.font = "18px Arial";
+    if (!font) {
+	ctx.font = "18px Arial";
+    }
+    else {
+	ctx.font = font;
+    }
     ctx.fillText(text, x, y);
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -122,4 +127,50 @@ function drawSpiral(canvas_id, iterations) {
     ctx.stroke();
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+
+function drawDigitalClock(canvas_id, hour, minute) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    clock_height = canvas.height * 0.6
+    clock_width = canvas.width * 0.8
+
+    drawInnerRect(canvas_id, clock_width, clock_height);
+
+    clock_height = canvas.height * 0.4
+    clock_width = canvas.width * 0.6
+
+    drawInnerRect(canvas_id, clock_width, clock_height);
+
+    hour_width_margin = canvas.width / 4;
+    hour_height_margin = canvas.width / 2 + (clock_width / 6);
+
+    drawText(canvas_id, hour_width_margin,
+	    hour_height_margin ,  hour + ": " + minute, "270% clockfont");
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+function drawInnerRect(canvas_id, clock_width, clock_height) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+
+    ctx.lineWidth = 7;
+    ctx.beginPath();
+
+    ctx.translate((canvas.width - clock_width) /  2,
+		  (canvas.height - clock_height) / 2);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, clock_height);
+    ctx.stroke();
+    ctx.lineTo(clock_width, clock_height);
+    ctx.stroke();
+    ctx.lineTo(clock_width, 0);
+    ctx.stroke();
+    ctx.lineTo(0, 0);
+    ctx.stroke();
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+
 }

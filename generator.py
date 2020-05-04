@@ -1,7 +1,7 @@
 import random
 
 from multiconfig import MultiConfig
-from operation import Addition, EmojiAddition, Grid, Letters, Spiral, Multiplication, Substraction, Time
+from operation import Addition, DigitalTime, EmojiAddition, Grid, Letters, Spiral, Multiplication, Substraction, Time
 from multiprinter import MultiPrinter
 
 def getMaxCount(config):
@@ -88,6 +88,9 @@ def generateTimes(config):
         deltas = range(0, 55, 5)
         delta = random.choice(deltas)
         direction = random.choice(('+', '-', None))
+        format = random.choice(['digital', 'analog'])
+        if config.digitalTime and format == 'digital':
+            times.add(DigitalTime(first, second, delta, direction))
         times.add(Time(first, second, delta, direction))
 
     return times

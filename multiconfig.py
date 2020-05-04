@@ -29,6 +29,7 @@ class MultiConfig:
         self.includeTimeTables =  True
         self.addFourDigits = True
         self.addToTimes = True
+        self.digitalTime = True
 
         # output file
         self.fileName = "res.html"

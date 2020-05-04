@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from string import Template
 import operation
 import random
 
@@ -34,23 +35,37 @@ class CanvasPrinter(OperationPrinter):
         self.height = 300
         self.width = 300
         self.identifier = '"canvas'+ str(random.randint(0,1000000)) + '"'
+        self.clock_tmpl = '<script>drawClock($id, 200, $first, $second)</script>\n'
+        self.digi_clock_tmpl = '<script>drawDigitalClock($id, "$first", "$second")</script>\n'
+        self.text_tmpl = '<script>drawText($id, 72, 293, "$delta minutes $direction")</script>\n'
+        self.spiral_tmpl = '<script>drawSpiral($id , $iterations)</script>\n'
+
 
     def cssClass(self):
         return 'canvasbox'
 
     def runOperation(self):
         script = ''
-        if self.operation.type() is operation.OperationType.Time:
-             script =  '<script>drawClock(' + self.identifier + ', 200, ' + str(self.operation.first) + ', ' \
-               + str(self.operation.second) + ')</script>\n'
+
+        if self.operation.type() == operation.OperationType.Time:
+            script = Template(self.clock_tmpl).substitute(id=self.identifier, first=self.operation.first,
+                                                          second=self.operation.second)
+        elif self.operation.type() == operation.OperationType.DigitalTime:
+            hour =  str(self.operation.first).zfill(2)
+            minute = str(self.operation.second).zfill(2)
+            script = Template(self.digi_clock_tmpl).substitute(
+                id=self.identifier, first=hour, second=minute)
+
+        if self.operation.type() == operation.OperationType.Time or \
+           self.operation.type() == operation.OperationType.DigitalTime:
              if self.operation.delta != 0 and self.operation.sign is not None:
                  direction = 'earlier'
                  if self.operation.sign == '+':
                      direction = 'later'
-                 script +=  '<script>drawText(' + self.identifier + ', 72, 293, "' + str(self.operation.delta) + \
-                 ' minutes ' + direction +'")</script>'
+                 script += Template(self.text_tmpl).substitute(
+                     id=self.identifier, delta=self.operation.delta, direction=direction)
         elif self.operation.type() is operation.OperationType.Spiral:
-            script = '<script>drawSpiral(' + self.identifier + ' , '+ str(self.operation.first) + ' )</script>\n'
+            script = Template(self.spiral_tmpl).substitute(id=self.identifier, iterations=self.operation.first)
 
         else : raise "runOperation not supported"
         return script

@@ -3,6 +3,11 @@
   src: url(print_dashed_tt.ttf);
 }
 
+@font-face {
+  font-family: clockfont;
+  src: url(digital-7.ttf);
+}
+
 body {
   margin: 30px;
 }
@@ -58,7 +63,6 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
 }
 
 .letterbox {
