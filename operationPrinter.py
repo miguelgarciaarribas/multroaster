@@ -67,7 +67,7 @@ class GridPrinter(CanvasPrinter):
     def __init__(self, operation, pattern):
         super().__init__(operation)
         self.pattern = pattern
-        self.width = 1400
+        self.width = 1100
 
     def cssClass(self):
         return 'gridbox'

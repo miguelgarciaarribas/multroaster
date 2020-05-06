@@ -125,6 +125,24 @@ function drawSpiral(canvas_id, iterations) {
 }
 
 
+function drawCircle(canvas_id, radius) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "black";
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.fill();
+}
+
+const GUIDANCE = {
+    LINE: 'line',
+    DOTS: 'dots',
+    MARKS: 'marks',
+    UNDEFINED: 'undefined'
+}
+
+
 function drawGrid(canvas_id, pattern) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
@@ -132,7 +150,9 @@ function drawGrid(canvas_id, pattern) {
     ctx.lineWidth = 2;
 
     ctx.beginPath();
-    for (i = 0; i < canvas.height ; i+=gridSize) {
+
+    // SOLID GRID
+    for (i = 0; i < canvas.height; i+=gridSize) {
 	ctx.translate(0, i);
 	ctx.moveTo(0,0);
 	ctx.lineTo(canvas.width,0);
@@ -140,118 +160,139 @@ function drawGrid(canvas_id, pattern) {
 	ctx.translate(0, -i);
     }
 
-    for (i = 0; i < canvas.width ; i+=gridSize) {
+    for (i = 0; i < canvas.width; i+=gridSize) {
 	ctx.translate(i, 0);
 	ctx.moveTo(0,0);
 	ctx.lineTo(0, canvas.height);
 	ctx.stroke();
 	ctx.translate(-i, 0);
     }
-
-    ctx.translate(0, gridSize*3);
+    ////
 
     if (pattern === 'square') {
-	drawSquarePath(canvas_id, gridSize, false /* dotted */);
-	ctx.translate(gridSize * 4, gridSize*3);
-	drawSquarePath(canvas_id, gridSize, true /* dotted */);
+	var segments = 4
+	var guidance = [GUIDANCE.LINE, GUIDANCE.DOTS, GUIDANCE.DOTS, GUIDANCE.MARKS, GUIDANCE.MARKS,
+			GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.DOTS];
+	for (i = 0; i < guidance.length; ++i) {
+	    ctx.translate(gridSize * i * segments, gridSize*3);
+	    drawSquarePath(canvas_id, gridSize, guidance[i]);
+	    ctx.translate(gridSize * i * segments, gridSize*7);
+	    drawSquarePath(canvas_id, gridSize, guidance[i]);
+	}
     } else if (pattern == 'triangle') {
-	drawTriangularPath(canvas_id, gridSize, false /* dotted */);
-	ctx.translate(gridSize * 2, gridSize*3);
-	drawTriangularPath(canvas_id, gridSize, true /* dotted */);
+	var segments = 2
+	var guidance = [GUIDANCE.LINE, GUIDANCE.DOTS, GUIDANCE.DOTS, GUIDANCE.MARKS, GUIDANCE.MARKS,
+			GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.MARKS,
+			GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.MARKS,
+			GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.MARKS, GUIDANCE.DOTS];
+	for (i = 0; i < guidance.length; ++i) {
+	    ctx.translate(gridSize * i * segments, gridSize*3);
+	    drawTriangularPath(canvas_id, gridSize, guidance[i]);
+	    ctx.translate(gridSize * i * segments, gridSize*7);
+	    drawTriangularPath(canvas_id, gridSize, guidance[i]);
+	}
     } else {
 	drawText(canvas_id, 0, 0, "Pattern Not supported")
     }
 
-
-    ctx.translate(0, gridSize*6);
-
-    if (pattern === 'square') {
-	drawSquarePath(canvas_id, gridSize, false /* dotted */);
-	ctx.translate(gridSize * 4, gridSize*6);
-	drawSquarePath(canvas_id, gridSize, true /* dotted */);
-    } else if (pattern == 'triangle') {
-	drawTriangularPath(canvas_id, gridSize, false /* dotted */);
-	ctx.translate(gridSize * 2, gridSize*6);
-	drawTriangularPath(canvas_id, gridSize, true /* dotted */);
-    } else {
-	drawText(canvas_id, 0, 0, "Pattern Not supported")
-    }
-
-    ctx.translate(0, gridSize*9);
-
-    if (pattern === 'square') {
-	drawSquarePath(canvas_id, gridSize, false /* dotted */);
-	ctx.translate(gridSize * 4, gridSize*9);
-	drawSquarePath(canvas_id, gridSize, true /* dotted */);
-    } else if (pattern == 'triangle') {
-	drawTriangularPath(canvas_id, gridSize, false /* dotted */);
-	ctx.translate(gridSize * 2, gridSize*9);
-	drawTriangularPath(canvas_id, gridSize, true /* dotted */);
-    } else {
-	drawText(canvas_id, 0, 0, "Pattern Not supported")
-    }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 
-function drawSquarePath(canvas_id, gridSize, dotted) {
+function drawSquarePath(canvas_id, gridSize, format) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     const segments = [5, 8, 5];
+    const radius = 5;
 
+    ctx.translate
     ctx.beginPath();
     ctx.lineWidth = 7;
-    if (dotted)
+    if (format === GUIDANCE.DOTS)
 	ctx.setLineDash(segments);
     else
 	ctx.setLineDash([])
 
     ctx.moveTo(0,0);
-    ctx.lineTo(gridSize,0);
-    ctx.stroke();
+    ctx.fillRect(0,0,1,1)
+    if (format === GUIDANCE.MARKS) {
+	drawCircle(canvas_id, radius);
+    } else {
+	ctx.lineTo(gridSize,0);
+	ctx.stroke();
+    }
 
     ctx.translate(gridSize, 0);
     ctx.moveTo(0, 0);
+    ctx.fillRect(0,0,1,1)
+    if (format === GUIDANCE.MARKS) {
+	drawCircle(canvas_id, radius);
+    } else {
     ctx.lineTo(0,-gridSize * 2);
     ctx.stroke();
+   }
 
     ctx.translate(0, -gridSize*2);
     ctx.moveTo(0, 0);
-    ctx.lineTo(gridSize*2, 0);
-    ctx.stroke();
+    if (format === GUIDANCE.MARKS) {
+	drawCircle(canvas_id, radius);
+    }
+   else {
+       ctx.lineTo(gridSize*2, 0);
+       ctx.stroke();
+   }
+
 
     ctx.translate(gridSize*2, 0);
     ctx.moveTo(0, 0);
-    ctx.lineTo(0, gridSize * 2);
-    ctx.stroke();
+    if (format == GUIDANCE.MARKS) {
+	drawCircle(canvas_id, radius);
+    } else {
+	ctx.lineTo(0, gridSize * 2);
+	ctx.stroke();
+    }
 
     ctx.translate(0, gridSize*2);
     ctx.moveTo(0, 0);
-    ctx.lineTo(gridSize, 0);
-    ctx.stroke();
+    if (format === GUIDANCE.MARKS) {
+	drawCircle(canvas_id, radius);
+    } else {
+	ctx.lineTo(gridSize, 0);
+	ctx.stroke();
+    }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
-function drawTriangularPath(canvas_id, gridSize, dotted) {
+function drawTriangularPath(canvas_id, gridSize, format) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     const segments = [5, 8, 5];
+    const radius = 5;
     ctx.beginPath();
 
     ctx.lineWidth = 7;
-    if (dotted)
+    if (format === GUIDANCE.DOTS)
 	ctx.setLineDash(segments);
     else
 	ctx.setLineDash([])
+
     ctx.moveTo(0, 0);
-    ctx.lineTo(gridSize, -gridSize*2);
-    ctx.stroke();
+    if (format === GUIDANCE.MARKS) {
+	drawCircle(canvas_id, radius);
+    } else {
+	ctx.lineTo(gridSize, -gridSize*2);
+	ctx.stroke();
+    }
     ctx.translate(gridSize, -gridSize*2);
     ctx.moveTo(0, 0);
-    ctx.lineTo(gridSize, gridSize*2);
-    ctx.stroke();
+    if (format === GUIDANCE.MARKS) {
+	drawCircle(canvas_id, radius);
+    } else {
+	ctx.lineTo(gridSize, gridSize*2);
+	ctx.stroke();
+    }
     ctx.translate(gridSize, gridSize*2);
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
