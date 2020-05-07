@@ -1,13 +1,3 @@
-function drawCircle(canvas_id, radius) {
-    const canvas = document.getElementById(canvas_id);
-    const ctx = canvas.getContext('2d');
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "black";
-    ctx.beginPath();
-    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-    ctx.fill();
-}
-
 const GUIDANCE = {
     LINE: 'line',
     DOTS: 'dots',
@@ -15,16 +5,25 @@ const GUIDANCE = {
     UNDEFINED: 'undefined'
 }
 
-function drawGrid(canvas_id, pattern) {
+function drawHorizontalGrid(canvas_id, grid_size) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
-    const gridSize = 30
-    ctx.lineWidth = 2;
 
-    ctx.beginPath();
+    for (i = 0; i < canvas.width; i+=grid_size) {
+	ctx.translate(i, 0);
+	ctx.moveTo(0,0);
+	ctx.lineTo(0, canvas.height);
+	ctx.stroke();
+	ctx.translate(-i, 0);
+    }
 
-    // SOLID GRID
-    for (i = 0; i < canvas.height; i+=gridSize) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+function drawVerticalGrid(canvas_id, grid_size) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    for (i = 0; i < canvas.height; i+=grid_size) {
 	ctx.translate(0, i);
 	ctx.moveTo(0,0);
 	ctx.lineTo(canvas.width,0);
@@ -32,14 +31,19 @@ function drawGrid(canvas_id, pattern) {
 	ctx.translate(0, -i);
     }
 
-    for (i = 0; i < canvas.width; i+=gridSize) {
-	ctx.translate(i, 0);
-	ctx.moveTo(0,0);
-	ctx.lineTo(0, canvas.height);
-	ctx.stroke();
-	ctx.translate(-i, 0);
-    }
-    ////
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+function drawFigureGrid(canvas_id, pattern) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    const gridSize = 30
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+
+    drawVerticalGrid(canvas_id, gridSize);
+    drawHorizontalGrid(canvas_id, gridSize);
 
     if (pattern === 'square') {
 	var segments = 4
@@ -168,4 +172,15 @@ function drawTriangularPath(canvas_id, gridSize, format) {
     ctx.translate(gridSize, gridSize*2);
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+
+function drawCircle(canvas_id, radius) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "black";
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.fill();
 }

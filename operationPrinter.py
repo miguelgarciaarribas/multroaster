@@ -73,7 +73,7 @@ class GridPrinter(CanvasPrinter):
         return 'gridbox'
 
     def runOperation(self):
-        return '<script>drawGrid(' + self.identifier + ', "' + self.pattern + '")</script>'
+        return '<script>drawFigureGrid(' + self.identifier + ', "' + self.pattern + '")</script>'
 
 class DivPrinter(OperationPrinter):
     def __init_(self, operation):
