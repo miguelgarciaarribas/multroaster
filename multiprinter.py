@@ -14,6 +14,7 @@ class MultiPrinter:
 <head>
 <link rel="stylesheet" type="text/css" href="mult.css">
 <script src="multifigures.js"></script>
+<script src="multigrid.js"></script>
 <script>
 function toggleResults() {
   var results = document.getElementsByClassName('result');
