@@ -105,9 +105,15 @@ class EmojiPrinter(OperationPrinter):
         # assert issubclass(operation, operation.ArithmeticOperation)
         super().__init__(operation)
         self.EMOJIS= ['&#x1F3E0;', # house
-                  '&#x1F434;', # horse
-                  '&#x1F42E;', # cow
-                  '&#x1F410;'  # goat
+                      '&#x1F434;', # horse
+                      '&#x1F42E;', # cow
+                      '&#x1F410;', # goat
+                      '&#x1F992;', # giraffe
+                      '&#x1F98D;', # elephant
+                      '&#x1F418;', # gorilla
+                      '&#x1F405',  # tiger
+                      '&#x1F334'   # palm tree
+
         ]
         self.EMOJIS_PER_ROW = 4
 
