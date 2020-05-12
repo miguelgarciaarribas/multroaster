@@ -16,7 +16,7 @@ It currently supports the following operations:
   *  Subtractions (up to 3 digits, two numbers)
   *  Times (in analog format clock).
 
-The command line version will generate all operations. There is also a  pyqt based UI that allows you to configure the final operation roaster without modifying the config file manually. In order to run it:
+The command line version will generate all possible operations. There is also a pyqt based UI that allows you to configure the final operation roaster without modifying the config file manually. In order to run it:
 
 > * create a virtual environment: python3 -m venv venv
 >* activate it: source venv/bin/activate (on mac)
@@ -25,3 +25,7 @@ The command line version will generate all operations. There is also a  pyqt bas
 >* pyuic5 -x multui.ui -o mult_ui.py # note that mult_ui.py is included in the source so only do this >if you change the ui
 >* cd ..
 >* python3 main_ui.py
+
+
+There are some unittest for the most complex operations, to run them do:
+> python3 -m unittest discover ./ '*_unittest.py'

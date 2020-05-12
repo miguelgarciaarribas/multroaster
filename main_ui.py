@@ -1,8 +1,9 @@
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QSlider
 
 from ui.mult_ui import *
 from generator import *
+from ui.slider import SliderGroup
+
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -12,24 +13,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Generate Button
         self.generateButton.clicked.connect(self.generateMult)
 
-        # Operation Slider
-        # TODO check if we can do this in the UI directly
-        self.operationAmountSlider.setTickPosition(QSlider.TicksBelow)
-        self.operationAmountSlider.valueChanged.connect(self.operationSliderValuechange)
-        self.operationCount.setText(str(self.operationAmountSlider.value()))
-
         # Main Tab
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget.currentChanged.connect(self.tabChanged)
+
+        # Sliders
+        self.sliders = SliderGroup(self)
 
     def tabChanged(self, current):
         if (current == 0):
             self.studentName.setText("Bruno Garcia")
         else:
             self.studentName.setText("Maya Garcia")
-
-    def operationSliderValuechange(self):
-        self.operationCount.setText(str(self.operationAmountSlider.value()))
 
     def generateMult(self):
         config = self.generateConfig()
@@ -60,6 +55,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             timetables.append(9)
 
         config = MultiConfig()
+        config.resetConfig()
+
         config.timetables = timetables
 
         config.studentName = self.studentName.text()
@@ -67,29 +64,31 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # TODO generate temporary html files based on date and student
         config.fileName = "res.html"
 
-        config.maxCount = self.operationAmountSlider.value()
-
-        # TODO: find a better way to provide fine tuning on operation options
-        config.includeAdditions = self.additionConfig.isChecked()
+        config.operations[OperationType.Addition] = self.additionAmountSlider.value()
         config.addFourDigits = self.addFourDigits.isChecked()
 
-        config.addFourDigits = self.addFourDigits.isChecked()
-        config.includeSubstractions = self.substractionConfig.isChecked()
+        config.operations[OperationType.Substraction] = \
+            self.substractionAmountSlider.value()
 
-        config.includeMultiplications = self.multiplicationConfig.isChecked()
-        config.includeTimeTables = self.multiplicationConfig.isChecked()
+        config.operations[OperationType.Multiplication] = \
+            self.multiplicationAmountSlider.value()
+        config.includeTimeTables = True
 
-        config.includeTimes = self.timeConfig.isChecked()
-        config.digitalTime = self.multiplicationConfig.isChecked()
-        config.addToTimes = self.multiplicationConfig.isChecked()
+        config.operations[OperationType.Time] = self.timeTellingAmountSlider.value()
+        config.digitalTime = self.addDigital.isChecked()
+        config.deltaToTimes = self.timeDeltas.isChecked()
 
-        config.includeEmojiAdditions = self.emojiConfig.isChecked()
-        config.includeGrids = self.gridConfig.isChecked()
+        config.operations[OperationType.EmojiAddition] = \
+            self.emojiAmountSlider.value()
+        config.operations[OperationType.Spiral] = \
+            self.spiralAmountSlider.value()
+        config.operations[OperationType.GridWrite] = \
+            self.gridAmountSlider.value()
+        config.operations[OperationType.DottedLetter] = \
+            self.letterAmountSlider.value()
 
-        # TODO: Discriminate numbers and letters
-        config.includeLetters = self.letterConfig.isChecked()
-        config.includeSpirals = self.spiralConfig.isChecked()
-
+        config.includeDottedLetters = self.letterCheck.isChecked()
+        config.includeDottedNumbers = self.numberCheck.isChecked()
 
         return config
 
