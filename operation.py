@@ -171,7 +171,6 @@ class Time(Operation):
          return str(hour).zfill(2) + ' : ' + str(minute).zfill(2)
 
     def display(self, order):
-        # TODO: build support for  digital times
         return self.printer.display(order)
 
 class DigitalTime(Time):

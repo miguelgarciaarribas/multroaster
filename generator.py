@@ -49,7 +49,6 @@ def generateAdditions(config):
     return additions
 
 def generateTimes(config):
-    #TODO add unittest for this similar to generateLetters
     maxCount = config.operations[OperationType.Time]
     times = set()
 
@@ -65,7 +64,8 @@ def generateTimes(config):
         format = random.choice(['digital', 'analog'])
         if config.digitalTime and format == 'digital':
             times.add(DigitalTime(first, second, delta, direction))
-        times.add(Time(first, second, delta, direction))
+        else:
+            times.add(Time(first, second, delta, direction))
 
     return times
 

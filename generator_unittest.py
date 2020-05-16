@@ -1,6 +1,6 @@
 import unittest
 
-from generator import generateLetters
+from generator import generateLetters, generateTimes
 from multiconfig import *
 from operation import Letters
 
@@ -22,6 +22,7 @@ class TestGenerateLetters(unittest.TestCase):
         self.assertNotPresent(res, '-') # initialization char
         self.assertNotInRange(res, self.numbers) # only letters
         self.assertPairInOrder(res)
+        self.assertEqual(len(res), 50)
 
         config.includeDottedNumbers = True
         config.includeDottedLetters = False
@@ -30,6 +31,7 @@ class TestGenerateLetters(unittest.TestCase):
         self.assertNotPresent(res, '-') # initialization char
         self.assertNotInRange(res, self.vowels) # Only numbers
         self.assertNotInRange(res, self.consonants)
+        self.assertEqual(len(res), 50)
 
         config.includeDottedNumbers = False
         config.includeDottedLetters = False
@@ -38,8 +40,23 @@ class TestGenerateLetters(unittest.TestCase):
         self.assertNotPresent(res, '-') # initialization char
         self.assertNotInRange(res, self.numbers) # Only letters
         self.assertPairInOrder(res)
+        self.assertEqual(len(res), 50)
 
+    def test_generate_times(self):
+        config = MultiConfig()
+        config.resetConfig()
+        config.operations[OperationType.Time] = 50
+        config.deltaToTimes = False
+        res = generateTimes(config)
+        self.assertNoDeltas(res)
+        self.assertEqual(len(res), 50)
+        config.digitalTime = True
+        res = generateTimes(config)
+        self.assertEqual(len(res), 50)
 
+    def assertNoDeltas(self, times):
+        for time in times:
+            self.assertEqual(time.delta, 0)
 
     def assertNotPresent(self, letters, character):
         for letter in letters:
