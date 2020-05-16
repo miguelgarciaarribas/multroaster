@@ -1,3 +1,5 @@
+import argparse
+
 from PyQt5 import QtCore, QtWidgets
 
 from ui.mult_ui import *
@@ -6,12 +8,15 @@ from ui.slider import SliderGroup
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self, *args, **kwargs):
-        QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+    """
+     Main UI for the hojitas application.
+    """
+    def __init__(self, args):
+        QtWidgets.QMainWindow.__init__(self, *[], **{})
         self.setupUi(self)
 
         # Generate Button
-        self.generateButton.clicked.connect(self.generateMult)
+        self.generateButton.clicked.connect(lambda: self.generateRoaster(args))
 
         # Main Tab
         self.tabWidget.setCurrentIndex(0)
@@ -26,8 +31,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.studentName.setText("Maya Garcia")
 
-    def generateMult(self):
+    def generateRoaster(self, args):
         config = self.generateConfig()
+        if args.output:
+            config.fileName = args.output
         generate(config)
         self.resultDisplay.setSource(QtCore.QUrl(config.fileName))
 
@@ -93,9 +100,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         return config
 
 
-
-if __name__== "__main__":
+def runApp(args):
     app = QtWidgets.QApplication([])
-    window = MainWindow()
+    window = MainWindow(args)
     window.show()
     app.exec_()
