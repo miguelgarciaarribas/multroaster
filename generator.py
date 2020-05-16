@@ -1,27 +1,33 @@
 import random
 
 from multiconfig import MultiConfig
+from operation import Addition,  DigitalTime, Division, EmojiAddition, Grid, Letters, Spiral, Multiplication, OperationType, Substraction, Time
+from operationType import Category, OperationType
 from multiprinter import MultiPrinter
 from operation import Addition, DigitalTime, Division, EmojiAddition, Grid, Letters, Spiral, Multiplication, Substraction, Time
-from operationType import OperationType
+
+def operationCount(config, operationType):
+    if operationType.category in config.filterBy:
+        return config.operations[operationType]
+    return 0
 
 
 def generateDivisions(config):
     """ Generates divisions. """
-    maxCount = config.operations[OperationType.Division]
+    maxCount = operationCount(config, OperationType.Division)
     divisions = set()
     for mult in range(0, maxCount):
         numerator = random.randint(1, 99)
         denominator = config.timetables[random.randint(0, len(config.timetables)-1)]
         # prevent division by 0
         if denominator == 0:
-            deniominator = 1
+            denominator = 1
         divisions.add(Division(numerator, denominator))
     return divisions
 
 def generateMultiplications(config):
     """ Generates a third of raw time tables as well as general multiplications if configured"""
-    maxCount = config.operations[OperationType.Multiplication]
+    maxCount = operationCount(config, OperationType.Multiplication)
     multiplications = set()
     if config.includeTimeTables:
         maxCount = int(maxCount * 2 / 3)
@@ -37,7 +43,7 @@ def generateMultiplications(config):
     return multiplications
 
 def generateSubstractions(config):
-    maxCount = config.operations[OperationType.Substraction]
+    maxCount = operationCount(config, OperationType.Substraction)
     substractions = set()
 
     for i in range(0, maxCount):
@@ -47,7 +53,7 @@ def generateSubstractions(config):
     return substractions
 
 def generateAdditions(config):
-    maxCount = config.operations[OperationType.Addition]
+    maxCount = operationCount(config, OperationType.Addition)
     additions = set()
 
     minNumber = 11
@@ -63,7 +69,7 @@ def generateAdditions(config):
     return additions
 
 def generateTimes(config):
-    maxCount = config.operations[OperationType.Time]
+    maxCount = operationCount(config, OperationType.Time)
     times = set()
 
     minutes = range(0, 60, 5)
@@ -84,7 +90,7 @@ def generateTimes(config):
     return times
 
 def generateLetters(config):
-    maxCount = config.operations[OperationType.DottedLetter]
+    maxCount = operationCount(config, OperationType.DottedLetter)
     letters = set()
     vowels = 'aeiou'
     consonants = 'bcdfghjklmnopqrstvwxyz'
@@ -114,7 +120,7 @@ def generateLetters(config):
     return letters
 
 def generateSpirals(config):
-    maxCount = config.operations[OperationType.Spiral]
+    maxCount = operationCount(config, OperationType.Spiral)
     spirals  = set()
 
     for i in range(0, maxCount):
@@ -123,7 +129,7 @@ def generateSpirals(config):
     return spirals
 
 def generateEmojiAdditions(config):
-    maxCount = config.operations[OperationType.EmojiAddition]
+    maxCount = operationCount(config, OperationType.EmojiAddition)
     emojis = set()
 
     maxNumber = 9
@@ -136,7 +142,7 @@ def generateEmojiAdditions(config):
     return emojis
 
 def generateGridWrites(config):
-    maxCount = config.operations[OperationType.GridWrite]
+    maxCount = operationCount(config, OperationType.GridWrite)
     candidates = ['triangle', 'square']
     current = candidates.copy()
     grids = set()
@@ -165,7 +171,6 @@ def generate(config):
 
     for operation in operations:
         result += list(operation(config))
-
 
     random.shuffle(result)
 

@@ -18,6 +18,8 @@ def processArguments():
                         ' Otherwise the QT version is run',
                         action='store_true')
     parser.add_argument('-o', '--output', help='name of the output file to generate')
+    parser.add_argument('-f', '--filter', choices=['primary', 'earlyYears'],
+                        help='filter operations by primary or earlyYears')
     args = parser.parse_args()
     return args
 

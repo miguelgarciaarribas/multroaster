@@ -1,11 +1,9 @@
-import argparse
-
 from PyQt5 import QtCore, QtWidgets
 
 from ui.mult_ui import *
 from generator import *
 from ui.slider import SliderGroup
-
+from ui.tab import TabGroup
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     """
@@ -18,18 +16,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Generate Button
         self.generateButton.clicked.connect(lambda: self.generateRoaster(args))
 
-        # Main Tab
-        self.tabWidget.setCurrentIndex(0)
-        self.tabWidget.currentChanged.connect(self.tabChanged)
-
         # Sliders
-        self.sliders = SliderGroup(self)
+        self.sliders = SliderGroup(self, self.category())
 
-    def tabChanged(self, current):
-        if (current == 0):
-            self.studentName.setText("Bruno Garcia")
-        else:
-            self.studentName.setText("Maya Garcia")
+        # Main Tab
+        self.tabs = TabGroup(self, self.sliders)
+
 
     def generateRoaster(self, args):
         config = self.generateConfig()
@@ -75,6 +67,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for operation, value in self.sliders.sliderValues.values():
             config.operations[operation] = value
 
+        config.filterBy = [self.category()]
+
         config.addFourDigits = self.addFourDigits.isChecked()
         config.includeTimeTables = True
         config.digitalTime = self.addDigital.isChecked()
@@ -84,6 +78,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         return config
 
+    def category(self):
+        if self.tabWidget.currentIndex() == 0:
+            return Category.Primary
+        return Category.EarlyYears
 
 def runApp(args):
     app = QtWidgets.QApplication([])

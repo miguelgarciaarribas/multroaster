@@ -1,4 +1,4 @@
-from operationType import OperationType
+from operationType import Category, OperationType
 
 class MultiConfig:
     """
@@ -6,6 +6,7 @@ class MultiConfig:
     """
     def __init__(self):
         self.studentName = "Bruno"
+        self.filterBy = []
 
         # Tables allowed
         self.timetables = []
@@ -34,6 +35,7 @@ class MultiConfig:
         self.digitalTime = False
         self.includeDottedLetters = False
         self.includeDottedNumbers = False
+        self.filterBy = []
 
 
     def defaultConfig(self):
@@ -46,3 +48,4 @@ class MultiConfig:
         self.digitalTime = True
         self.includeDottedLetters = True
         self.includeNumbers = True
+        self.filterBy = [Category.EarlyYears, Category.Primary]

@@ -5,7 +5,6 @@ from operationType import OperationType
 from operationPrinter import CanvasPrinter, DivPrinter, EmojiPrinter, GridPrinter
 
 
-
 class Operation(metaclass=ABCMeta):
     """Abstract class to represent an operation with multiple operands
         operands = [] list of parameters for the operation. Can be ints for mathematical ones or just parameters
@@ -24,6 +23,13 @@ class Operation(metaclass=ABCMeta):
 
     @abstractmethod
     def type(self):
+        pass
+
+    @abstractmethod
+    def category(self):
+        """
+        Whether the operation belongs to early years or primary.
+        """
         pass
 
     @abstractmethod
@@ -47,6 +53,9 @@ class ArithmeticOperation(Operation):
 
     def _operation(self):
         return "%s %s %s =" % (self.first, self.sign, self.second)
+
+    def category(self):
+        return Category.Primary
 
     def display(self, order):
         return '<div class="box flexbox"> <div class="order"> %d) </div>' \
@@ -134,7 +143,10 @@ class EmojiAddition(Addition):
          self.printer = EmojiPrinter(self)
 
     def type(self):
-          return OperationType.EmojiAddition
+         return OperationType.EmojiAddition
+
+    def category(self):
+         return Category.EarlyYears
 
     def display(self, order):
          return  self.printer.display(order)
@@ -154,6 +166,9 @@ class Time(Operation):
 
     def type(self):
         return OperationType.Time
+
+    def category(self):
+        return Category.Primary
 
     def calculate(self):
          minute = self.second
@@ -196,6 +211,9 @@ class Spiral(Operation):
     def calculate(self):
         return self.first
 
+    def category(self):
+        return Category.EarlyYears
+
     def display(self, order):
         return self.printer.display(order)
 
@@ -208,6 +226,9 @@ class Grid(Operation):
 
     def type(self):
         return OperationType.GridWrite
+
+    def category(self):
+        return Category.EarlyYears
 
     def calculate(self):
         return self.first
@@ -229,6 +250,9 @@ class Letters(Operation):
 
     def calculate(self):
         return str(self.first) + ' , ' + str(self.second)
+
+    def category(self):
+         return Category.EarlyYears
 
     def display(self, order):
         return self.printer.display(order)
