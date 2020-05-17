@@ -9,7 +9,7 @@ class OperationType(Enum):
      Addition = 1
      Substraction = 2
      Multiplication = 3
-     Division = 4 # Not Supported
+     Division = 4
      Fraction = 5 # Not Supported
      Time = 6
      DigitalTime = 7
@@ -67,6 +67,25 @@ class ArithmeticOperation(Operation):
              ' <span class="control"> %s </span> <span class=result> %s </span>' \
              ' </div>\n' % \
     (order, self._operation(), str(self.calculate()))
+
+class Division(ArithmeticOperation):
+    """ Represents a division operation.
+
+       For example 50 ÷ 5 =
+    """
+    def __init__(self, first, second):
+        if first > second:
+            super().__init__([first, second], '÷')
+        else:
+            super().__init__([second, first], '÷')
+
+    def type(self):
+        return OperationType.Division
+
+    def calculate(self):
+         if (self.first % self.second) == 0:
+             return str(self.first // self.second)
+         return str(self.first // self.second) + 'r' + str(self.first % self.second)
 
 class Multiplication(ArithmeticOperation):
     """ Represents a multiplication operation.

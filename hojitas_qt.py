@@ -71,6 +71,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # TODO generate temporary html files based on date and student
         config.fileName = "res.html"
 
+        # TODO: Use slider combo by mapping it to type in the constructor
+        # and generate the config in a for loop
+
         config.operations[OperationType.Addition] = self.additionAmountSlider.value()
         config.addFourDigits = self.addFourDigits.isChecked()
 
@@ -80,6 +83,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         config.operations[OperationType.Multiplication] = \
             self.multiplicationAmountSlider.value()
         config.includeTimeTables = True
+        config.operations[OperationType.Division] = \
+            self.divisionAmountSlider.value()
 
         config.operations[OperationType.Time] = self.timeTellingAmountSlider.value()
         config.digitalTime = self.addDigital.isChecked()

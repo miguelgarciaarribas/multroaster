@@ -21,6 +21,8 @@ class SliderGroup():
              mainWindow.multiplicationCount
          self.sliderCombo[mainWindow.substractionAmountSlider] = \
              mainWindow.substractionCount
+         self.sliderCombo[mainWindow.divisionAmountSlider] = \
+             mainWindow.divisionCount
          self.sliderCombo[mainWindow.timeTellingAmountSlider] = \
              mainWindow.timeTellingCount
          self.sliderCombo[mainWindow.emojiAmountSlider] = \

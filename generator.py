@@ -1,12 +1,22 @@
 import random
 
 from multiconfig import MultiConfig
-from operation import Addition, DigitalTime, EmojiAddition, Grid, Letters, Spiral, Multiplication, OperationType, Substraction, Time
+from operation import Addition, DigitalTime, Division, EmojiAddition, Grid, Letters, Spiral, Multiplication, OperationType, Substraction, Time
 from multiprinter import MultiPrinter
 
 
+def generateDivisions(config):
+    """ Generates divisions. """
+    maxCount = config.operations[OperationType.Division]
+    divisions = set()
+    for mult in range(0, maxCount):
+        numerator = random.randint(1, 99)
+        denominator = config.timetables[random.randint(0, len(config.timetables)-1)]
+        divisions.add(Division(numerator, denominator))
+    return divisions
+
 def generateMultiplications(config):
-    """ Generates a third raw time tables as well as general multiplications if configured"""
+    """ Generates a third of raw time tables as well as general multiplications if configured"""
     maxCount = config.operations[OperationType.Multiplication]
     multiplications = set()
     if config.includeTimeTables:
@@ -138,16 +148,21 @@ def generateGridWrites(config):
 
 
 def generate(config):
-    multiplications =  generateMultiplications(config)
-    substractions = generateSubstractions(config)
-    additions = generateAdditions(config)
-    times = generateTimes(config)
-    letters = generateLetters(config)
-    spirals = generateSpirals(config)
-    emojis = generateEmojiAdditions(config)
-    grids = generateGridWrites(config)
-    result = list(multiplications) + list( substractions) + list(additions) + \
-             list(times) + list(letters) + list(spirals) + list(emojis) + list(grids)
+    result = []
+    operations = [generateMultiplications,
+                  generateDivisions,
+                  generateSubstractions,
+                  generateAdditions,
+                  generateTimes,
+                  generateLetters,
+                  generateSpirals,
+                  generateEmojiAdditions,
+                  generateGridWrites]
+
+    for operation in operations:
+        result += list(operation(config))
+
+
     random.shuffle(result)
 
     printer = MultiPrinter()

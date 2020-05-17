@@ -17,7 +17,7 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>30</x>
       <y>50</y>
       <width>901</width>
       <height>471</height>
@@ -30,7 +30,7 @@
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="documentMode">
      <bool>false</bool>
@@ -418,7 +418,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>360</y>
+         <y>390</y>
          <width>141</width>
          <height>22</height>
         </rect>
@@ -446,7 +446,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>300</y>
+         <y>330</y>
          <width>81</width>
          <height>16</height>
         </rect>
@@ -459,7 +459,7 @@
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>300</y>
+         <y>330</y>
          <width>21</width>
          <height>16</height>
         </rect>
@@ -472,7 +472,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>320</y>
+         <y>350</y>
          <width>100</width>
          <height>20</height>
         </rect>
@@ -491,7 +491,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>340</y>
+         <y>370</y>
          <width>121</width>
          <height>20</height>
         </rect>
@@ -508,7 +508,7 @@
       </widget>
       <widget class="QLabel" name="label_10">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -524,7 +524,7 @@
       </widget>
       <widget class="QLabel" name="divisionCount">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -536,6 +536,34 @@
        </property>
        <property name="text">
         <string>0</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="divisionAmountSlider">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>290</y>
+         <width>141</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>5</number>
+       </property>
+       <property name="value">
+        <number>3</number>
+       </property>
+       <property name="sliderPosition">
+        <number>3</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </widget>

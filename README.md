@@ -15,9 +15,10 @@ It currently supports the following operations:
 
 * Primary level (6-8 years)
   *  Multiplications (one digit)
+  *  Divisions (one digit)
   *  Additions (up to 4 digits, two numbers)
   *  Subtractions (up to 3 digits, two numbers)
-  *  Times (in analog format clock).
+  *  Times (in analog and digital format clock).
 
 Running the program with no arguments will spawn a pyqt based UI that allows you to configure the final operation roaster without modifying the config file manually. In order to run it:
 
