@@ -1,8 +1,9 @@
 import random
 
 from multiconfig import MultiConfig
-from operation import Addition, DigitalTime, Division, EmojiAddition, Grid, Letters, Spiral, Multiplication, OperationType, Substraction, Time
 from multiprinter import MultiPrinter
+from operation import Addition, DigitalTime, Division, EmojiAddition, Grid, Letters, Spiral, Multiplication, Substraction, Time
+from operationType import OperationType
 
 
 def generateDivisions(config):

@@ -39,7 +39,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.resultDisplay.setSource(QtCore.QUrl(config.fileName))
 
     def generateConfig(self):
-        """ Loads a configuration based on the UI settings"""
+        """ Loads a configuration based on the UI settings """
 
         timetables = []
         if self.timeTable1.isChecked():
@@ -68,37 +68,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         config.studentName = self.studentName.text()
 
-        # TODO generate temporary html files based on date and student
+        # TODO consider generating temporary html files based on date and student
         config.fileName = "res.html"
 
-        # TODO: Use slider combo by mapping it to type in the constructor
-        # and generate the config in a for loop
 
-        config.operations[OperationType.Addition] = self.additionAmountSlider.value()
+        for operation, value in self.sliders.sliderValues.values():
+            config.operations[operation] = value
+
         config.addFourDigits = self.addFourDigits.isChecked()
-
-        config.operations[OperationType.Substraction] = \
-            self.substractionAmountSlider.value()
-
-        config.operations[OperationType.Multiplication] = \
-            self.multiplicationAmountSlider.value()
         config.includeTimeTables = True
-        config.operations[OperationType.Division] = \
-            self.divisionAmountSlider.value()
-
-        config.operations[OperationType.Time] = self.timeTellingAmountSlider.value()
         config.digitalTime = self.addDigital.isChecked()
         config.deltaToTimes = self.timeDeltas.isChecked()
-
-        config.operations[OperationType.EmojiAddition] = \
-            self.emojiAmountSlider.value()
-        config.operations[OperationType.Spiral] = \
-            self.spiralAmountSlider.value()
-        config.operations[OperationType.GridWrite] = \
-            self.gridAmountSlider.value()
-        config.operations[OperationType.DottedLetter] = \
-            self.letterAmountSlider.value()
-
         config.includeDottedLetters = self.letterCheck.isChecked()
         config.includeDottedNumbers = self.numberCheck.isChecked()
 

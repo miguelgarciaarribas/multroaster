@@ -1,4 +1,4 @@
-from operation import OperationType
+from operationType import OperationType
 
 class MultiConfig:
     """

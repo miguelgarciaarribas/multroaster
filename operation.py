@@ -1,23 +1,9 @@
 from abc import ABCMeta, abstractmethod
 import random
 
+from operationType import OperationType
 from operationPrinter import CanvasPrinter, DivPrinter, EmojiPrinter, GridPrinter
 
-from enum import Enum
-
-class OperationType(Enum):
-     Addition = 1
-     Substraction = 2
-     Multiplication = 3
-     Division = 4
-     Fraction = 5 # Not Supported
-     Time = 6
-     DigitalTime = 7
-     Spiral = 8
-     DottedLetter = 9
-     GridWrite = 10
-     EmojiAddition = 11
-     Undefined = 12
 
 
 class Operation(metaclass=ABCMeta):
