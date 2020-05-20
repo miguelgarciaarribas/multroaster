@@ -13,6 +13,9 @@ def generateDivisions(config):
     for mult in range(0, maxCount):
         numerator = random.randint(1, 99)
         denominator = config.timetables[random.randint(0, len(config.timetables)-1)]
+        # prevent division by 0
+        if denominator == 0:
+            deniominator = 1
         divisions.add(Division(numerator, denominator))
     return divisions
 
