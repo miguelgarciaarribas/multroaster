@@ -16,10 +16,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self, *[], **{})
         self.setupUi(self)
 
-        # TODO: This is a hack to re-align the browser. Consider removing
-        self.previewLayout.removeWidget(self.resultDisplay)
-        self.previewLayout.addWidget(self.resultDisplay)
-
         # Generate Button
         self.generateButton.clicked.connect(lambda: self.generateRoaster(args))
 

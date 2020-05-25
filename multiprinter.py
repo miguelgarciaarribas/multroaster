@@ -32,9 +32,9 @@ function toggleResults() {
 </head>
 <body>
 """
-        result += '<p class="header"> Operations for %s - %s </p>'% (config.studentName, date)
-        result += '<div class="control"> <input type="button" value="Toggle Results" onClick=toggleResults() /> </div>'
-        result += '<div class="wrapper">'
+        result += '<p class="header"> Operations for %s - %s </p>\n'% (config.studentName, date)
+        result += '<div class="control"> <input type="button" value="Toggle Results" onClick=toggleResults() /> </div>\n'
+        result += '<div class="wrapper">\n'
 
         order = 1
         for op in operations:
@@ -44,3 +44,16 @@ function toggleResults() {
         result += '</div></body>'
         print(result)
         return result
+
+    def printIntro(self, category):
+        result = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Operations</title>
+        </head>
+        <body>
+          <h1> Welcome to hojitas for %s. </h1>
+          <p>Please configure the operation roaster and click Generate to see a preview. </p>
+        """
+        return result % category.representation

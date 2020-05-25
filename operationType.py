@@ -2,9 +2,13 @@ from enum import Enum, unique
 
 @unique
 class Category(Enum):
-     EarlyYears = 0
-     Primary = 1
-     Undefined = 2
+     EarlyYears = (0, 'Early Years')
+     Primary = (1, 'Primary')
+     Undefined = (2, 'Undefined')
+
+     def __init__(self, value, representation):
+          self.representation = representation
+
 
 @unique
 class OperationType(Enum):
