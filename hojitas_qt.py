@@ -1,5 +1,8 @@
 from PyQt5 import QtCore, QtWidgets
 
+import os
+
+
 from ui.mult_ui import *
 from generator import *
 from ui.slider import SliderGroup
@@ -12,6 +15,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, args):
         QtWidgets.QMainWindow.__init__(self, *[], **{})
         self.setupUi(self)
+
+        # TODO: This is a hack to re-align the browser. Consider removing
+        self.previewLayout.removeWidget(self.resultDisplay)
+        self.previewLayout.addWidget(self.resultDisplay)
 
         # Generate Button
         self.generateButton.clicked.connect(lambda: self.generateRoaster(args))
@@ -28,7 +35,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if args.output:
             config.fileName = args.output
         generate(config)
-        self.resultDisplay.setSource(QtCore.QUrl(config.fileName))
+        path = os.getcwd() + '/' + config.fileName
+        url = QtCore.QUrl.fromLocalFile(path)
+        self.resultDisplay.load(QtCore.QUrl.fromLocalFile(path))
+        self.resultDisplay.show()
 
     def generateConfig(self):
         """ Loads a configuration based on the UI settings """

@@ -25,6 +25,7 @@ Running the program with no arguments will spawn a pyqt based UI that allows you
 > * create a virtual environment: python3 -m venv venv
 >* activate it: source venv/bin/activate (on mac)
 >* install pyt: pip install PyQt5
+>* install PyQtWebEngine: pip install PyQtWebEngine
 >* cd ui/
 >* pyuic5 -x multui.ui -o mult_ui.py # note that mult_ui.py is included in the source so only do this >if you change the ui
 >* cd ..

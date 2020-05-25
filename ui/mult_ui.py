@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(996, 761)
+        MainWindow.resize(1164, 742)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
@@ -69,7 +69,12 @@ class Ui_MainWindow(object):
         self.previewLabel = QtWidgets.QLabel(self.tab)
         self.previewLabel.setObjectName("previewLabel")
         self.previewLayout.addWidget(self.previewLabel)
-        self.resultDisplay = QtWidgets.QTextBrowser(self.tab)
+        self.resultDisplay = QtWebEngineWidgets.QWebEngineView(self.tab)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.resultDisplay.sizePolicy().hasHeightForWidth())
+        self.resultDisplay.setSizePolicy(sizePolicy)
         self.resultDisplay.setObjectName("resultDisplay")
         self.previewLayout.addWidget(self.resultDisplay)
         self.mainTabLayout.addLayout(self.previewLayout)
@@ -79,6 +84,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.configPanelP.sizePolicy().hasHeightForWidth())
         self.configPanelP.setSizePolicy(sizePolicy)
+        self.configPanelP.setMinimumSize(QtCore.QSize(200, 0))
         self.configPanelP.setMaximumSize(QtCore.QSize(200, 16777215))
         self.configPanelP.setObjectName("configPanelP")
         self.addThreeDigits = QtWidgets.QRadioButton(self.configPanelP)
@@ -230,7 +236,7 @@ class Ui_MainWindow(object):
         self.timetableGroup.addWidget(self.timeTable8)
         self.timeTable9 = QtWidgets.QCheckBox(self.timeTablePanel)
         self.timeTable9.setObjectName("timeTable9")
-        self.timetableGroup.addWidget(self.timeTable9)
+        self.timetableGroup.addWidget(self.timeTable9, 0, QtCore.Qt.AlignHCenter)
         self.mainTabLayout.addWidget(self.timeTablePanel)
         self.gridLayout.addLayout(self.mainTabLayout, 0, 0, 2, 2)
         self.tabWidget.addTab(self.tab, "")
@@ -331,12 +337,12 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 996, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1164, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -389,6 +395,7 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "Letter Filling:"))
         self.letterCount.setText(_translate("MainWindow", "0"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Early Years"))
+from PyQt5 import QtWebEngineWidgets
 
 
 if __name__ == "__main__":

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>996</width>
-    <height>761</height>
+    <width>1164</width>
+    <height>742</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -100,7 +100,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -125,7 +125,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextBrowser" name="resultDisplay"/>
+             <widget class="QWebEngineView" name="resultDisplay" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -136,6 +143,12 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
             </property>
             <property name="maximumSize">
              <size>
@@ -642,7 +655,7 @@
                </property>
               </widget>
              </item>
-             <item>
+             <item alignment="Qt::AlignHCenter">
               <widget class="QCheckBox" name="timeTable9">
                <property name="text">
                 <string>9</string>
@@ -959,12 +972,20 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>996</width>
+     <width>1164</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global"> PyQt5.QtWebEngineWidgets </header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

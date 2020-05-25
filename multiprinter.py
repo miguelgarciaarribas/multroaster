@@ -27,9 +27,8 @@ function toggleResults() {
     }
   }
 }
-
-
 </script>
+<title>Operations</title>
 </head>
 <body>
 """
