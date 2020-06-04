@@ -15,6 +15,8 @@ class TabGroup():
         if (current == 0):
             self.studentName.setText("Bruno Garcia")
             self.sliderGroup.resetSliders(Category.Primary)
+            self.mainWindow.previewLayout.addWidget(self.mainWindow.resultDisplay)
         else:
             self.studentName.setText("Maya Garcia")
             self.sliderGroup.resetSliders(Category.EarlyYears)
+            self.mainWindow.previewLayoutEY.addWidget(self.mainWindow.resultDisplay)
