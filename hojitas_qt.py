@@ -23,7 +23,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.sliders = SliderGroup(self, self.category())
 
         # Main Tab
-        self.tabs = TabGroup(self, self.sliders)
+        self.tabs = TabGroup(self, self.sliders, args)
 
 
     def generateRoaster(self, args):

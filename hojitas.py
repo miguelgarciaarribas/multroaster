@@ -20,9 +20,10 @@ def processArguments():
     parser.add_argument('-o', '--output', help='name of the output file to generate')
     parser.add_argument('-f', '--filter', choices=['primary', 'earlyYears'],
                         help='filter operations by primary or earlyYears')
+    parser.add_argument('-e', '--experimental', help='enable experimental features',
+                        action='store_true')
     args = parser.parse_args()
     return args
-
 
 
 if __name__== "__main__":

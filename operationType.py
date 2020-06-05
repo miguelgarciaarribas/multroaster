@@ -2,12 +2,13 @@ from enum import Enum, unique
 
 @unique
 class Category(Enum):
-     EarlyYears = (0, 'Early Years')
-     Primary = (1, 'Primary')
+     Primary = (0, 'Primary')
+     EarlyYears = (1, 'Early Years')
      Undefined = (2, 'Undefined')
 
      def __init__(self, value, representation):
           self.representation = representation
+          self.enumValue = value
 
 
 @unique

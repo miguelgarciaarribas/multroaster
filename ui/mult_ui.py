@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1164, 742)
+        MainWindow.resize(1078, 724)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
@@ -48,6 +48,7 @@ class Ui_MainWindow(object):
         self.studentnameLabel.setObjectName("studentnameLabel")
         self.gridLayout_2.addWidget(self.studentnameLabel, 0, 0, 1, 1)
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(5)
         sizePolicy.setVerticalStretch(0)
@@ -326,6 +327,9 @@ class Ui_MainWindow(object):
         self.letterCount.setObjectName("letterCount")
         self.tab2Layout.addWidget(self.configPanelEarlyYears)
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_3 = QtWidgets.QWidget()
+        self.tab_3.setObjectName("tab_3")
+        self.tabWidget.addTab(self.tab_3, "")
         self.gridLayout_2.addWidget(self.tabWidget, 2, 0, 1, 4)
         self.studentnameLabel.raise_()
         self.studentName.raise_()
@@ -337,7 +341,7 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1164, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1078, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
 
@@ -395,6 +399,7 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "Letter Filling:"))
         self.letterCount.setText(_translate("MainWindow", "0"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Early Years"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Experimental"))
 from PyQt5 import QtWebEngineWidgets
 
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1164</width>
-    <height>742</height>
+    <width>1078</width>
+    <height>724</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,6 +87,9 @@
     </item>
     <item row="2" column="0" colspan="4">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>5</horstretch>
@@ -957,6 +960,11 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Experimental</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -972,7 +980,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1164</width>
+     <width>1078</width>
      <height>22</height>
     </rect>
    </property>
