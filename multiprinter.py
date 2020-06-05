@@ -36,13 +36,13 @@ class MultiPrinter:
 
     def printIntro(self, category):
         result = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <title>Operations</title>
-        </head>
-        <body>
-          <h1> Welcome to hojitas for %s. </h1>
-          <p>Please configure the operation roaster and click Generate to see a preview. </p>
-        """
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Operations</title>
+</head>
+<body>
+ <h1> Welcome to hojitas for %s </h1>
+ <p>Please configure the operation roaster and click Generate to see a preview. </p>
+"""
         return result % category.representation
