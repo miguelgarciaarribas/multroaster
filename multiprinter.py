@@ -12,22 +12,11 @@ class MultiPrinter:
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="preload" href="digital-7.ttf" as="font" type="font/ttf">
-<link rel="stylesheet" type="text/css" href="mult.css">
-<script src="multifigures.js"></script>
-<script src="multigrid.js"></script>
-<script>
-function toggleResults() {
-  var results = document.getElementsByClassName('result');
-  for(i = 0; i < results.length; i++) {
-    if (results[i].style.display === 'inline'){
-     results[i].style.display = 'none';
-    }  else {
-     results[i].style.display = 'inline';
-    }
-  }
-}
-</script>
+<link rel="preload" href="web/digital-7.ttf" as="font" type="font/ttf">
+<link rel="stylesheet" type="text/css" href="web/operations.css">
+<script src="web/multifigures.js"></script>
+<script src="web/multigrid.js"></script>
+<script src="web/actions.js"> </script>
 <title>Operations</title>
 </head>
 <body>
