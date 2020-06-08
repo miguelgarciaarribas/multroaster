@@ -80,7 +80,7 @@ function drawSquarePath(canvas_id, gridSize, format) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     const segments = [5, 8, 5];
-    const radius = 5;
+    const radius = 3.5;
 
     ctx.translate
     ctx.beginPath();
@@ -145,7 +145,7 @@ function drawTriangularPath(canvas_id, gridSize, format) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     const segments = [5, 8, 5];
-    const radius = 5;
+    const radius = 3.5;
     ctx.beginPath();
 
     ctx.lineWidth = 7;
