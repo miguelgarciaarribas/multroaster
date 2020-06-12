@@ -7,6 +7,7 @@ from ui.mult_ui import *
 from generator import *
 from ui.slider import SliderGroup
 from ui.tab import TabGroup
+from ui.experimental import ExperimentalContent
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     """
@@ -22,8 +23,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Sliders
         self.sliders = SliderGroup(self, self.category())
 
-        # Main Tab
+        # Tabs
         self.tabs = TabGroup(self, self.sliders, args)
+
+        # Experimental content
+        if args.experimental:
+            self.experiment = ExperimentalContent(self)
 
 
     def generateRoaster(self, args):

@@ -329,6 +329,9 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
+        self.expLabel = QtWidgets.QLabel(self.tab_3)
+        self.expLabel.setGeometry(QtCore.QRect(280, 110, 60, 16))
+        self.expLabel.setObjectName("expLabel")
         self.tabWidget.addTab(self.tab_3, "")
         self.gridLayout_2.addWidget(self.tabWidget, 2, 0, 1, 4)
         self.studentnameLabel.raise_()
@@ -346,7 +349,7 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menubar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -399,6 +402,7 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "Letter Filling:"))
         self.letterCount.setText(_translate("MainWindow", "0"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Early Years"))
+        self.expLabel.setText(_translate("MainWindow", "TEST"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Experimental"))
 from PyQt5 import QtWebEngineWidgets
 
