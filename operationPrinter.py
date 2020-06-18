@@ -90,14 +90,16 @@ class GridPrinter(CanvasPrinter):
     def runOperation(self):
         return '<script>drawFigureGrid(' + self.identifier + ', "' + self.pattern + '")</script>'
 
-class DivPrinter(OperationPrinter):
+class LetterPrinter(OperationPrinter):
     def __init_(self, operation):
         super().__init__(operation)
     def cssClass(self):
         return 'letterbox'
     def display(self, order):
+
         text = '<div class=kidstext> %s </div>\n' % \
-            (str(self.operation.first) + ' ' + str(self.operation.second))
+            str(self.operation.first.ljust(4, '_'))
+
         return super().display(order) % (text, '')
 
 class EmojiPrinter(OperationPrinter):

@@ -93,29 +93,31 @@ def generateLetters(config):
     maxCount = operationCount(config, OperationType.DottedLetter)
     letters = set()
     vowels = 'aeiou'
-    consonants = 'bcdfghjklmnopqrstvwxyz'
+    consonants = 'bcdfghjklmnpqrstvwxyz'
     digits = '0123456789'
-    cases = ['smallpair', 'capitalpair']
+    cases = ['small', 'capital']
     if config.includeDottedNumbers:
-        cases.append('numberpair')
+        cases.append('number')
     if not config.includeDottedLetters and config.includeDottedNumbers:
-        cases = ['numberpair']
+        cases = ['number']
 
     for i in range(0, maxCount):
         case = random.choice(cases)
+        choice = ''
         combo1 = '-'
         combo2 = '-'
-        if case == 'smallpair' or case == 'capitalpair':
-            combo1 = consonants[random.randint(0, len(vowels) -1)]
-            combo2 = vowels[random.randint(0, len(vowels) -1)]
-            if case == 'capitalpair':
-                combo1 = combo1.capitalize()
-                combo2 = combo2.capitalize()
-        elif case == 'numberpair':
-            combo1 = digits[random.randint(0, len(digits) -1)]
-            combo2 = digits[random.randint(0, len(digits) -1)]
+        if case == 'small' or case == 'capital':
+            combo1 = random.choice(consonants)
+            combo2 = random.choice(vowels)
+            choice = combo1 + combo2
+            if case == 'capital':
+                choice = choice.capitalize()
 
-        letters.add(Letters(combo1, combo2))
+        elif case == 'number':
+            for i in range(0, 4):
+                choice += random.choice(digits)
+
+        letters.add(Letters(choice))
 
     return letters
 

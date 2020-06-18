@@ -67,7 +67,7 @@ body {
 .letterbox {
   border-radius: 5px;
   padding: 2px;
-  font-size: 150%;
+  font-size: 100%;
   background-color: #fea;
   grid-row-end: span 2;
   grid-column-end: span 1;

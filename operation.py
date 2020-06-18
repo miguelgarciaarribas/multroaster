@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 import random
 
 from operationType import OperationType
-from operationPrinter import CanvasPrinter, DivPrinter, EmojiPrinter, GridPrinter
+from operationPrinter import CanvasPrinter, EmojiPrinter, GridPrinter, LetterPrinter
 
 
 class Operation(metaclass=ABCMeta):
@@ -20,6 +20,9 @@ class Operation(metaclass=ABCMeta):
             self.second = operands[1]
         else:
             self.second = 0
+
+    def __str__(self):
+        return "<%s %s>" %  (self.first, self.second)
 
     @abstractmethod
     def type(self):
@@ -241,15 +244,15 @@ class Grid(Operation):
 
 class Letters(Operation):
     """ Contains the logic for filling a pair of letters pair in dotted format. """
-    def __init__(self, first,  second):
-        super().__init__([first, second])
-        self.printer = DivPrinter(self)
+    def __init__(self, first):
+        super().__init__([first])
+        self.printer = LetterPrinter(self)
 
     def type(self):
         return OperationType.Letters
 
     def calculate(self):
-        return str(self.first) + ' , ' + str(self.second)
+        return self.first
 
     def category(self):
          return Category.EarlyYears

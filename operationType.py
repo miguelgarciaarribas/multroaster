@@ -28,3 +28,5 @@ class OperationType(Enum):
 
      def __init__(self, value, category):
           self.category = category
+     def __str__(self):
+          return str(self.value)

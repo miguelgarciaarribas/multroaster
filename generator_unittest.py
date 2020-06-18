@@ -11,17 +11,18 @@ class TestGenerateLetters(unittest.TestCase):
         Test the differnt combos to generate letters
         """
         self.numbers = '0123456789'
-        self.consonants = 'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTU'
+        self.consonants = 'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ'
         self.vowels = 'aeiouAEIOU'
         config = MultiConfig()
         config.resetConfig()
+        config.filterBy = [Category.EarlyYears, Category.Primary]
         config.operations[OperationType.DottedLetter] = 50
         config.includeDottedLetters = True
 
         res = generateLetters(config)
         self.assertNotPresent(res, '-') # initialization char
         self.assertNotInRange(res, self.numbers) # only letters
-        self.assertPairInOrder(res)
+        self.assertInOrder(res)
         self.assertEqual(len(res), 50)
 
         config.includeDottedNumbers = True
@@ -39,13 +40,14 @@ class TestGenerateLetters(unittest.TestCase):
 
         self.assertNotPresent(res, '-') # initialization char
         self.assertNotInRange(res, self.numbers) # Only letters
-        self.assertPairInOrder(res)
+        self.assertInOrder(res)
         self.assertEqual(len(res), 50)
 
     def test_generate_times(self):
         config = MultiConfig()
         config.resetConfig()
         config.operations[OperationType.Time] = 50
+        config.filterBy = [Category.EarlyYears, Category.Primary]
         config.deltaToTimes = False
         res = generateTimes(config)
         self.assertNoDeltas(res)
@@ -60,22 +62,21 @@ class TestGenerateLetters(unittest.TestCase):
 
     def assertNotPresent(self, letters, character):
         for letter in letters:
-            self.assertNotEqual(letter.first, character)
-            self.assertNotEqual(letter.second, character)
+            for char in letter.first:
+                self.assertNotEqual(char, character)
 
     def assertNotInRange(self, letters, letterRange):
         for letter in letters:
-            self.assertFalse(letter.first in letterRange,
-                             letter.first + ' not in ' + letterRange)
-            self.assertFalse(letter.second in letterRange,
-                             letter.second + ' not in ' + letterRange)
+            for char in letter.first:
+                self.assertFalse(char in letterRange,
+                                 char + ' not in ' + letterRange)
 
-    def assertPairInOrder(self, letters):
+    def assertInOrder(self, letters):
         for letter in letters:
-            self.assertTrue(letter.first in self.consonants,
-                            letter.first + ' not in ' + self.consonants)
-            self.assertTrue(letter.second in self.vowels,
-                            letter.first + ' not in ' + self.vowels)
+            self.assertTrue(letter.first[0] in self.consonants,
+                            letter.first[0] + ' not in ' + self.consonants)
+            self.assertTrue(letter.first[1] in self.vowels,
+                            letter.first[1] + ' not in ' + self.vowels)
 
 
 
