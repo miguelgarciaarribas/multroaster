@@ -71,9 +71,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         config.studentName = self.studentName.text()
 
-        # TODO consider generating temporary html files based on date and student
-        config.fileName = "res.html"
-
 
         for operation, value in self.sliders.sliderValues.values():
             config.operations[operation] = value

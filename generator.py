@@ -104,19 +104,19 @@ def generateLetters(config):
     for i in range(0, maxCount):
         case = random.choice(cases)
         choice = ''
-        combo1 = '-'
-        combo2 = '-'
-        if case == 'small' or case == 'capital':
-            combo1 = random.choice(consonants)
-            combo2 = random.choice(vowels)
-            choice = combo1 + combo2
-            if case == 'capital':
-                choice = choice.capitalize()
+        for i in range(0,4):
+          combo1 = '-'
+          combo2 = '-'
+          if case == 'small' or case == 'capital':
+              combo1 = random.choice(consonants)
+              combo2 = random.choice(vowels)
+              if case == 'capital':
+                  combo1 = combo1.capitalize()
+                  combo2 = combo2.capitalize()
+              choice = choice + combo1 + combo2
 
-        elif case == 'number':
-            for i in range(0, 4):
-                choice += random.choice(digits)
-
+          elif case == 'number':
+              choice += random.choice(digits)
         letters.add(Letters(choice))
 
     return letters
@@ -134,7 +134,7 @@ def generateEmojiAdditions(config):
     maxCount = operationCount(config, OperationType.EmojiAddition)
     emojis = set()
 
-    maxNumber = 9
+    maxNumber = 5
     minNumber = 1
 
     for i in range(0, maxCount):
