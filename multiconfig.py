@@ -17,7 +17,7 @@ class MultiConfig:
         self.resetConfig()
 
         # output file
-        self.fileName = "res2.html"
+        self.fileName = "res.html"
 
     def resetConfig(self):
         # Tables allowed

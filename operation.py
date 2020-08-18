@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 import random
 
 from operationType import OperationType
-from operationPrinter import CanvasPrinter, EmojiPrinter, GridPrinter, LetterPrinter
+from operationPrinter import CanvasPrinter, EmojiPrinter, GridPrinter, LetterPrinter, MazePrinter
 
 
 class Operation(metaclass=ABCMeta):
@@ -240,8 +240,6 @@ class Grid(Operation):
         return self.printer.display(order)
 
 
-
-
 class Letters(Operation):
     """ Contains the logic for filling a pair of letters pair in dotted format. """
     def __init__(self, first):
@@ -256,6 +254,26 @@ class Letters(Operation):
 
     def category(self):
          return Category.EarlyYears
+
+    def display(self, order):
+        return self.printer.display(order)
+
+class Maze(Operation):
+    """ Contains the logic for drawing a maze """
+    def __init__(self, maze):
+        super().__init__([maze])
+        self.printer = MazePrinter(self, maze)
+        self.maze = maze
+
+    def type(self):
+        return OperationType.Maze
+
+    def category(self):
+        return Category.EarlyYears
+
+    def calculate(self):
+        # TODO draw a line that resolves it! instead of size!
+        return 'maze'
 
     def display(self, order):
         return self.printer.display(order)

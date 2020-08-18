@@ -24,6 +24,7 @@ class OperationType(Enum):
      DottedLetter = (8, Category.EarlyYears)
      GridWrite = (9, Category.EarlyYears)
      EmojiAddition = (10, Category.EarlyYears)
+     Maze = (11, Category.EarlyYears)
      Undefined = (11, Category.Undefined)
 
      def __init__(self, value, category):

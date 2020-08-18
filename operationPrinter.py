@@ -78,6 +78,21 @@ class CanvasPrinter(OperationPrinter):
     def display(self, order):
         return super().display(order) % (self.canvas(), self.runOperation())
 
+
+class MazePrinter(CanvasPrinter):
+    def __init__(self, operation, maze):
+        super().__init__(operation)
+        self.width = 1000
+        self.height = 400
+        self.maze = maze
+
+    def cssClass(self):
+        return 'gridbox'
+
+    def runOperation(self):
+        return '<script>drawMaze(' + self.identifier + ', "' + self.maze + '")</script>'
+
+
 class GridPrinter(CanvasPrinter):
     def __init__(self, operation, pattern):
         super().__init__(operation)

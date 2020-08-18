@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="preload" href="digital-7.ttf" as="font" type="font/ttf">
-  <link rel="stylesheet" type="text/css" href="mult.css"/>
+  <link rel="preload" href="web/digital-7.ttf" as="font" type="font/ttf">
+  <link rel="stylesheet" type="text/css" href="web/operations.css"/>
 
 
-    <script src="multifigures.js"></script>
-    <script src="multigrid.js"></script>
+    <script src="web/multifigures.js"></script>
+    <script src="web/multigrid.js"></script>
 
 <script>
 function ale() {
@@ -35,6 +35,28 @@ function toggleClock() {
   <div class="box">E</div>
   <div class="box">F</div>
 
+  <div class="gridbox flexbox"> <div class="order"> 58) </div>
+    <canvas id="canvas12628159" width="1400" height="400" class="temp"> </canvas>
+    <span class=result> Grid </span> </div>
+  <script>drawMaze("canvas12628159","es,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,esw,ew,ew,ew,esw,ew,ew,ew,ew,ew,ew,ew,esw,ew,ew,ew,esw,ew,sw;ns, , , , , , , , , , , ,ns, , , ,ns, , , , , , , ,ns, , , ,ns, ,ns;ns, ,es,ew,ew,ew,ew,ew,w, ,s, ,n, ,s, ,ns, ,e,ew,ew,ew,sw, ,n, ,s, ,ns, ,ns;ns, ,ns, , , , , , , ,ns, , , ,ns, ,ns, , , , , ,ns, , , ,ns, ,ns, ,ns;ns, ,ns, ,es,ew,ew,ew,ew,ew,ensw,ew,ew,ew,nw, ,ens,ew,ew,ew,sw, ,ens,ew,ew,ew,nsw, ,n, ,ns;ns, ,ns, ,ns, , , , , ,ns, , , , , ,ns, , , ,ns, ,ns, , , ,ns, , , ,ns;ns, ,ns, ,n, ,es,ew,sw, ,ens,ew,sw, ,es,ew,nw, ,s, ,ns, ,en,ew,sw, ,en,ew,sw, ,ns;ns, ,ns, , , ,ns, ,ns, ,ns, ,ns, ,ns, , , ,ns, ,ns, , , ,ns, , , ,ns, ,ns;ns, ,en,ew,ew,ew,nw, ,ns, ,n, ,ns, ,n, ,es,ew,nw, ,en,ew,w, ,ns, ,s, ,n, ,ns;ns, , , , , , , ,ns, , , ,ns, , , ,ns, , , , , , , ,ns, ,ns, , , ,ns;en,ew,ew,ew,ew,ew,ew,ew,enw,ew,ew,ew,enw,ew,ew,ew,enw,ew,ew,ew,ew,ew,ew,ew,enw,ew,enw,ew,ew,ew,nw")</script>
+
+<!--
+"es,es, ,en, ,es, ,ew,es, ,en, , ,es,es,ew,es;ns, ,ns, , , ,ns, , , ,ns;ns, ,n, ,s, ,ns, ,s, ,ns;ns, , , ,ns, ,ns, ,ns, ,ns;ns, ,es,ew,nw, ,ns, ,ns, ,ns;ns, ,ns, , , ,ns, ,ns, ,ns;ns, ,ns, ,es,ew,enw,ew,nsw, ,ns;ns, ,ns, ,ns, , , ,ns, ,ns;ns, ,en,ew,nw, ,s, ,n, ,ns;ns, , , , , ,ns, , , ,ns;en,ew,ew,ew,ew,ew,enw,ew,ew,ew,nw"
+
+
+"es,ew,ew,ew,esw,ew,ew,ew,ew,ew,sw;ns, , , ,ns, , , , , ,ns;ns, ,s, ,ns, ,es,ew,sw, ,ns;ns, ,ns, ,ns, ,ns, ,ns, ,ns;ns, ,en,ew,nw, ,ns, ,ns, ,ns;ns, , , , , ,ns, ,ns, ,ns;ens,ew,ew,ew,ew,ew,nw, ,ns, ,ns;ns, , , , , , , ,ns, ,ns;ns, ,e,ew,ew,ew,ew,ew,nw, ,ns;ns, , , , , , , , , ,ns;en,ew,ew,ew,ew,ew,ew,ew,ew,ew,nw"
+
+
+"es,ew,ew,ew,esw,ew,ew,ew,ensw,ew,sw;ew,ew,ew,nw,es, , , , , ,ns;ns, ,s, ,ns, ,es,ew,sw, ,ns"
+
+
+10x10 example
+
+es,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,sw;ns, , , , , , , , , , , , , , , , , , , ,ns;ens,ew,ew,ew,esw,ew,ew,ew,w, ,es,ew,ew,ew,ew,ew,ew,ew,w, ,ns;ns, , , ,ns, , , , , ,ns, , , , , , , , , ,ns;ns, ,s, ,ns, ,e,ew,ew,ew,enw,ew,esw,ew,ew,ew,sw, ,es,ew,nsw;ns, ,ns, ,ns, , , , , , , ,ns, , , ,ns, ,ns, ,ns;ns, ,ns, ,ns, ,es,ew,ew,ew,sw, ,n, ,s, ,ns, ,n, ,ns;ns, ,ns, ,ns, ,ns, , , ,ns, , , ,ns, ,ns, , , ,ns;ns, ,ns, ,ens,ew,nw, ,s, ,ens,ew,ew,ew,nw, ,ens,ew,ew,ew,nsw;ns, ,ns, ,ns, , , ,ns, ,ns, , , , , ,ns, , , ,ns;ns, ,ns, ,n, ,e,ew,nsw, ,ns, ,e,ew,esw,ew,nw, ,s, ,ns;ns, ,ns, , , , , ,ns, ,ns, , , ,ns, , , ,ns, ,ns;ns, ,en,ew,esw,ew,ew,ew,nsw, ,en,ew,sw, ,ns, ,e,ew,nsw, ,ns;ns, , , ,ns, , , ,ns, , , ,ns, ,ns, , , ,ns, ,ns;ens,ew,sw, ,ens,ew,sw, ,en,ew,w, ,ns, ,ns, ,es,ew,nw, ,ns;ns, ,ns, ,ns, ,ns, , , , , ,ns, ,ns, ,ns, , , ,ns;ns, ,n, ,ns, ,en,ew,ew,ew,esw,ew,nw, ,n, ,ns, ,e,ew,nsw;ns, , , ,ns, , , , , ,ns, , , , , ,ns, , , ,ns;ns, ,e,ew,enw,ew,w, ,s, ,en,ew,ew,ew,ew,ew,enw,ew,w, ,ns;ns, , , , , , , ,ns, , , , , , , , , , , ,ns;en,ew,ew,ew,ew,ew,ew,ew,enw,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,ew,nw
+
+-->
+
+
   <div class="canvasbox flexbox"> <div class="order"> 4) </div>
     <canvas id="canvas156268" width="300" height="300" class="temp"> </canvas>
  <span class=result> 04 : 00 </span> </div>
@@ -46,17 +68,6 @@ function toggleClock() {
  <span class=result> 04 : 00 </span> </div>
   <script>drawClock("canvas126223", 200, 4, 0)</script>
   <script>drawText("canvas126223", 65, 293, "10 minutes later")</script>
-
-
-  <div class="gridbox flexbox"> <div class="order"> 57) </div>
-    <canvas id="canvas126269" width="1400" height="300" class="temp"> </canvas>
- <span class=result> Grid </span> </div>
-  <script>drawGrid("canvas126269", "square")</script>
-
-  <div class="gridbox flexbox"> <div class="order"> 57) </div>
-    <canvas id="canvas126281" width="1400" height="300" class="temp"> </canvas>
- <span class=result> Grid </span> </div>
- <script>drawGrid("canvas126281", "triangle")</script>
 
 
   <div class="canvasbox">

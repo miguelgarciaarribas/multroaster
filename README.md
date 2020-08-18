@@ -2,7 +2,6 @@
 
 I find myself constantly writing operations for my 7 year old to resolve, at some point I got tired of doing it by hand. This is a toy project meant to learn some basic pyqt and web technologies while at the same time saving myself some time to write operations by hand.
 
-In order to run the command line version just do "python3 main.py" from the source directory it will generate an html file (res.txt) ready to print. It's super basic right now but I will be improving it in the future.
 It currently supports the following operations:
 
 
@@ -11,6 +10,7 @@ It currently supports the following operations:
   * Fill in dotted letters
   * Simple additions with animals and numbers
   * Pre-Writting exercises in a grid
+  * Solve Mazes
 
 
 * Primary level (6-8 years)

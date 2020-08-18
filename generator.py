@@ -1,10 +1,10 @@
 import random
 
 from multiconfig import MultiConfig
-from operation import Addition,  DigitalTime, Division, EmojiAddition, Grid, Letters, Spiral, Multiplication, OperationType, Substraction, Time
 from operationType import Category, OperationType
 from multiprinter import MultiPrinter
-from operation import Addition, DigitalTime, Division, EmojiAddition, Grid, Letters, Spiral, Multiplication, Substraction, Time
+from operation import Addition, DigitalTime, Division, EmojiAddition, Grid, Letters, Maze, Multiplication, Spiral, Substraction, Time
+from maze.serializablemaze import SerializableMaze
 
 def operationCount(config, operationType):
     if operationType.category in config.filterBy:
@@ -155,9 +155,14 @@ def generateGridWrites(config):
         del current[pattern]
         if not current:
             current = candidates.copy()
-
     return grids
 
+def generateMazes(config):
+    maxCount = operationCount(config, OperationType.Maze)
+    mazes = set()
+    for i in range(0, maxCount):
+        mazes.add(Maze(SerializableMaze.getSerializedMaze(25, 10)))
+    return mazes
 
 def generate(config):
     result = []
@@ -169,7 +174,8 @@ def generate(config):
                   generateLetters,
                   generateSpirals,
                   generateEmojiAdditions,
-                  generateGridWrites]
+                  generateGridWrites,
+                  generateMazes]
 
     for operation in operations:
         result += list(operation(config))

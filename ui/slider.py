@@ -52,6 +52,10 @@ class SliderGroup():
          self.sliderValues[self.mainWindow.letterAmountSlider] = \
              (OperationType.DottedLetter, 0)
 
+         self.sliderCombo[self.mainWindow.mazeAmountSlider] = self.mainWindow.mazeCount
+         self.sliderValues[self.mainWindow.mazeAmountSlider] = \
+             (OperationType.Maze, 0)
+
          for slider, label in self.sliderCombo.items():
               slider.setTickPosition(QSlider.TicksBelow)
               slider.valueChanged.connect(self.sliderValueChanged)
