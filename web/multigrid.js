@@ -185,8 +185,7 @@ function drawCircle(canvas_id, radius) {
 }
 
 
-function drawRow(canvas_id, row, height) {
-    const gridSize = 18;
+function drawRow(canvas_id, row, height, gridSize) {
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     ctx.lineWidth = 2;
@@ -292,12 +291,28 @@ function drawRow(canvas_id, row, height) {
     ctx.stroke()
 }
 
+function drawGoals(canvas_id, rows, gridSize) {
+    const canvas = document.getElementById(canvas_id);
+    const ctx = canvas.getContext('2d');
+    ctx.font = '17px arial';
+    ctx.fillText(String.fromCodePoint(0x1F463), gridSize + gridSize /4, gridSize + gridSize /2 );  // footprints
+
+    // Get the dimensions of the maze by looking at the array
+    const mazeRows = rows[0].split(',').length;
+    const mazeColumns = rows.length;
+    x = (mazeRows * gridSize) - 2*gridSize;
+    y = (mazeColumns * gridSize) - gridSize;
+    ctx.fillText(String.fromCodePoint(0x26E9), x, y);  // japanse gate
+}
+
 function drawMaze(canvas_id, laberinth) {
+    const gridSize = 18;
     const canvas = document.getElementById(canvas_id);
     const ctx = canvas.getContext('2d');
     rows  = laberinth.split(";");
     for (var i = 0; i < rows.length; ++i) {
-        drawRow(canvas_id, rows[i], i);
+        drawRow(canvas_id, rows[i], i, gridSize);
     }
+    drawGoals(canvas_id, rows, gridSize);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
